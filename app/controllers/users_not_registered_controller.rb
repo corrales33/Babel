@@ -1,0 +1,2 @@
+class UsersNotRegisteredController < ApplicationController
+end
