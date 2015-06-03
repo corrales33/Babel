@@ -1,0 +1,27 @@
+<%= form_for @user do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<br>
+	<%= f.label :nick %>
+	<%= f.text_field :nick %>
+	<br>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	<br>
+	<%= f.label :city %>
+	<%= f.text_field :city %>
+	<br>
+	<%= f.label :age %>
+	<%= f.text_field :age %>
+	<br>
+	<%= f.label :languages_learnt %>
+	<%= f.text_field :languages_learnt %>
+	<br>
+	<%= f.label :languages_without_learning %>
+	<%= f.text_field :languages_without_learning %>
+	<br>
+	<%= f.label :photo %>
+	<%= f.text_field :photo %>
+	<br>
+	<%= f.submit 'Save' %>
+<% end %>

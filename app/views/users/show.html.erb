@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6">
+			<div>
+				<%= image_tag(@user.photo, class: "image-big") %>
+			</div>
+			<div>
+				Rating: <%= @user.rating %>
+			</div>
+		</div>
+		<div class="col-sm-6 perfil">
+			<ul class="list">
+				<li><p><strong> Name:</strong><%= @user.name %></p></li>
+				<li><p><strong> Age:</strong><%= @user.age %></p></li>
+				<li><p><strong> Nick:</strong><%= @user.nick %></p></li>
+				<li><p><strong> Email:</strong><%= @user.email %></p></li>
+				<li><p><strong> City:</strong><%= @user.city %></p></li>
+				<li><p><strong> Job:</strong><%= @user.job %></p></li>
+				<li><p><strong> Hobbies:</strong><%= @user.hobbies %></p></li>
+				<li><p><strong> Languages learnt:</strong><%= @user.languages_learnt %></p></li>
+				<li><p><strong> Languages que quiere aprender:</strong><%= @user.languages_without_learning %></p></li>
+			</ul>
+		</div>
+	</div>
+	<div><%= link_to 'Edit perfil', edit_user_path(@user) %></div>
+</div>
