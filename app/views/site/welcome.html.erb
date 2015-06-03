@@ -1,0 +1,126 @@
+<h1> Accede a nuestra plataforma! ¿Eres nuevo o ya estás registrado? ¿Eres un establecimiento? ¿Prefieres acceder como invitado? </h1>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 title">
+			<h2> Novedades </h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="row">
+			<div class="col-sm-6 title-users">
+				<h3> Últimos usuarios </h3>
+			</div>
+			<div class="col-sm-6 title-places">
+				<h3> Últimos establecimientos </h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 users">
+				<% @users.each do |user| %>
+				<div class="row">
+					<ul>
+						<li><%= image_tag(user.photo, class: "image-user") %></li>
+						<ul>
+							<li> Name: <%= user.name %>.</li>
+							<li> Age: <%= user.age %> years.</li>
+							<li> Idiomas que sabe: <%= user.languages_learnt %>.</li>
+							<li> Idiomas que quiere aprender: <%= user.languages_without_learning %>.</li>
+						</ul>
+					</ul>	
+				</div>
+				<%end%>
+			</div>
+			<div class="col-sm-6 places">
+				<% @places.each do |place| %>
+				<div class="row">
+					<ul>
+						<li><%= place.name %></li>
+						<ul>
+							<li> Ciudad: <%= place.city %>.</li>
+							<li> Dirección: <%= place.address %></li>
+							<li> Ofertas: <%= place.offers %>.</li>
+							<li> Opiniones de los usuarios: <%= place.opinions %>.</li>
+						</ul>
+					</ul>
+				</div>
+				<%end%>	
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+<!--
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="welcome" id="welc_user">
+				<h1>USUARIOS</h1>
+				<div id="form_user">
+					<div>
+						<label for="Nick"> Nick:</label>
+						<input type="text" id="nick_user">
+					</div>
+					<div>
+						<label for="password"> Password:</label>
+						<input type="text" id="password_user">
+					</div>
+					<div>
+						<label for="email"> Email:</label>
+						<input type="text" id="email">
+					</div>
+					<div>
+						<input type="checkbox" id="check_user" checked="checked">¿Quiere recordar sus datos?
+					</div>
+					<div>
+						<button id="log-in-user">  LOGIN </button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="welcome" id="welc_guest"> 
+				<h1>INVITADOS</h1>
+				<div id="form_guest">
+					<div>
+						<label for="Nick"> Nick:</label>
+						<input type="text" id="nick_guest">
+					</div>
+					<div>
+						<label for="password"> Password:</label>
+						<input type="text" id="password_guest">
+					</div>
+					<div>
+						<input type="checkbox" id="check_guest" checked="checked">¿Quiere recordar sus datos?
+					</div>
+					<div>
+						<button id="log-in-guest">  LOGIN </button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="welcome" id="welc_place"> 
+				<h1>ESTABLECIMIENTOS</h1>
+				<div id="form_place">
+					<div>
+						<label for="Name"> Name:</label>
+						<input type="text" id="name">
+					</div>
+					<div>
+						<label for="password"> Password:</label>
+						<input type="text" id="password_place">
+					</div>
+					<div>
+						<input type="checkbox" id="check_place" checked="checked">¿Quiere recordar sus datos?
+					</div>
+					<div>
+						<button id="log-in-place">  LOGIN </button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+-->

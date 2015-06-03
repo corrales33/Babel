@@ -11,15 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601150645) do
+ActiveRecord::Schema.define(version: 20150603101658) do
+
+  create_table "guests", force: :cascade do |t|
+    t.string   "name"
+    t.string   "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "meetings", force: :cascade do |t|
-    t.integer  "user_registered_id"
+    t.integer  "user_id"
+    t.integer  "place_id"
     t.string   "address"
     t.string   "language"
     t.datetime "date"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "participant"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "places", force: :cascade do |t|
@@ -33,19 +42,12 @@ ActiveRecord::Schema.define(version: 20150601150645) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_not_registereds", force: :cascade do |t|
-    t.string   "nick"
-    t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_registereds", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "nick"
-    t.string   "password"
     t.string   "email"
-    t.float    "rating"
+    t.string   "password"
+    t.integer  "rating"
     t.string   "city"
     t.integer  "age"
     t.string   "job"

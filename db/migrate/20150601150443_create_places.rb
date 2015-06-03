@@ -9,7 +9,6 @@ class CreatePlaces < ActiveRecord::Migration
     	t.text :offers
     	t.text :opinions
 
-
       t.timestamps null: false
     end
   end
