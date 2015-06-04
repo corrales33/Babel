@@ -34,6 +34,8 @@ group :development, :test do
 
   gem 'carrierwave'
 
+  gem 'bcrypt', '~> 3.1.7'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end

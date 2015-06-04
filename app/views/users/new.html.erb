@@ -1,3 +1,4 @@
+<h1>Sign up</h1>
 
 <%= form_for @user, :html => { :multipart => true } do |f| %>
 	<% if @user.errors.any? %>
@@ -8,35 +9,30 @@
 	</ul>
 	<% end %>
 	
-	<%= f.label :name %>
-	<%= f.text_field :name %>
+	<%= f.text_field :name, :placeholder => 'Name' %>
 	<br>
-	<%= f.label :nick %>
-	<%= f.text_field :nick %>
+	<%= f.text_field :nick, :placeholder => 'Nick' %>
 	<br>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
+	<%= f.email_field :email, :placeholder => 'Email' %>
 	<br>
-	<%= f.label :password %>
-	<%= f.text_field :password %>
+	<%= f.password_field :password, :placeholder => 'Password' %>
 	<br>
-	<%= f.label :rating %>
-	<%= f.text_field :rating %>
+	<%= f.text_field :rating, :placeholder => 'Rating' %>
 	<br>
-	<%= f.label :city %>
-	<%= f.text_field :city %>
+	<%= f.text_field :city, :placeholder => 'City' %>
 	<br>
-	<%= f.label :age %>
-	<%= f.text_field :age %>
+	<%= f.text_field :age, :placeholder => 'Age' %>
 	<br>
-	<%= f.label :languages_learnt %>
-	<%= f.text_field :languages_learnt %>
+	<%= f.text_field :job, :placeholder => 'Job' %>
 	<br>
-	<%= f.label :languages_without_learning %>
-	<%= f.text_field :languages_without_learning %>
+	<%= f.text_field :hobbies, :placeholder => 'Hobbies' %>
+	<br>
+	<%= f.text_field :languages_learnt, :placeholder => 'Languages learnt' %>
+	<br>
+	<%= f.text_field :languages_without_learning, :placeholder => 'Languages without learning' %>
 	<br>
 	<%= f.label :image %>
 	<%= f.file_field :image %>
 	<br>
-	<%= f.submit 'Save' %>
+	<%= f.submit 'Create an user', class: "btn-submit" %>
 <% end %>

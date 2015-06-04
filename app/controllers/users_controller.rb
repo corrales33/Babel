@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_action :require_user, only: [:index, :show]
 
 	def show
 		@user = User.find params[:id]
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
 		if @user.save
 			redirect_to user_path(@user)
 		elsif
-			redirect_to root_path
+			redirect_to '/signup'
 		end
 	end
 

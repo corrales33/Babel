@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	validates :name, presence: true
 	attr_accessor :image
 	mount_uploader :image, ImageUploader
+	has_secure_password
 
 	def self.last_users_registered param
 		users = User.order(created_at: :desc).limit(param)

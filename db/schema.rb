@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20150604131025) do
 
   create_table "guests", force: :cascade do |t|
     t.string   "name"
-    t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -33,20 +33,20 @@ ActiveRecord::Schema.define(version: 20150604131025) do
 
   create_table "places", force: :cascade do |t|
     t.string   "name"
-    t.string   "password"
+    t.string   "password_digest"
     t.string   "city"
     t.string   "address"
     t.text     "offers"
     t.text     "opinions"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "nick"
     t.string   "email"
-    t.string   "password"
+    t.string   "password_digest"
     t.integer  "rating"
     t.string   "city"
     t.integer  "age"
