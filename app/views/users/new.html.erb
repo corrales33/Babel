@@ -1,4 +1,13 @@
+
 <%= form_for @user, :html => { :multipart => true } do |f| %>
+	<% if @user.errors.any? %>
+	<ul>
+		<% @user.errors.full_messages.each do |error_msg| %>
+		<li><%= error_msg %></li>
+		<% end %>
+	</ul>
+	<% end %>
+	
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 	<br>
@@ -7,6 +16,12 @@
 	<br>
 	<%= f.label :email %>
 	<%= f.text_field :email %>
+	<br>
+	<%= f.label :password %>
+	<%= f.text_field :password %>
+	<br>
+	<%= f.label :rating %>
+	<%= f.text_field :rating %>
 	<br>
 	<%= f.label :city %>
 	<%= f.text_field :city %>
@@ -23,5 +38,5 @@
 	<%= f.label :image %>
 	<%= f.file_field :image %>
 	<br>
-	<%= f.submit 'Update' %>
+	<%= f.submit 'Save' %>
 <% end %>

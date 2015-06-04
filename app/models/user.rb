@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 	has_many :meetings
+	validates :name, uniqueness: true
+	validates :name, presence: true
+	attr_accessor :image
+	mount_uploader :image, ImageUploader
 
 	def self.last_users_registered param
 		users = User.order(created_at: :desc).limit(param)

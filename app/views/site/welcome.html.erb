@@ -20,7 +20,7 @@
 				<% @users.each do |user| %>
 				<div class="row">
 					<ul>
-						<li><%= link_to image_tag(user.photo, class: "image-user"), user_path(user) %></li>
+						<li><%= link_to (image_tag user.image_url.to_s, class: "image-user"), user_path(user) %></li>
 						<ul>
 							<li> Name: <%= user.name %>.</li>
 							<li> Age: <%= user.age %> years.</li>
@@ -59,4 +59,5 @@
 			<%end%>
 		</div>
 	</div>
+	<div><%= link_to 'New user', new_user_path %></div>
 </div>

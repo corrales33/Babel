@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603101658) do
+ActiveRecord::Schema.define(version: 20150604131025) do
 
   create_table "guests", force: :cascade do |t|
     t.string   "name"
@@ -54,9 +54,13 @@ ActiveRecord::Schema.define(version: 20150603101658) do
     t.string   "languages_learnt"
     t.string   "languages_without_learning"
     t.text     "hobbies"
-    t.string   "photo"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "image"
   end
 
 end
