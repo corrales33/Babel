@@ -1,0 +1,26 @@
+<h1>Sign up</h1>
+
+<%= form_for @place, :html => { :multipart => true } do |f| %>
+	<% if @place.errors.any? %>
+	<ul>
+		<% @place.errors.full_messages.each do |error_msg| %>
+		<li><%= error_msg %></li>
+		<% end %>
+	</ul>
+	<% end %>
+	
+	<%= f.text_field :name, :placeholder => 'Name' %>
+	<br>
+	<%= f.password_field :password, :placeholder => 'Password' %>
+	<br>
+	<%= f.text_field :city, :placeholder => 'City' %>
+	<br>
+	<%= f.text_field :address, :placeholder => 'Address' %>
+	<br>
+	<%= f.text_field :offers, :placeholder => 'Offers' %>
+	<br>
+	<%= f.label :image %>
+	<%= f.file_field :image %>
+	<br>
+	<%= f.submit 'Create an place', class: "btn-submit" %>
+<% end %>

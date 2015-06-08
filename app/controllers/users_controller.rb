@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	before_action :require_user, only: [:index, :show]
+	before_action :require_user, only: [:index, :show, :edit]
+	#before_action :require_user_registered, only: [:edit]
 
 	def show
 		@user = User.find params[:id]

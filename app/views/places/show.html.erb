@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6">
+		</div>
+		<div class="col-sm-6 perfil">
+			<ul class="list">
+				<li><p><strong> Name:</strong><%= @place.name %></p></li>
+				<li><p><strong> Address:</strong><%= @place.address %></p></li>
+				<li><p><strong> City:</strong><%= @place.city %></p></li>
+				<li><p><strong> Offers:</strong><%= @place.offers %></p></li>
+				<li><p><strong> Opinions:</strong><%= @place.opinions %></p></li>
+			</ul>
+		</div>
+	</div>
+	<% if current_place && current_place.name == @place.name %>
+	<div><%= link_to 'Edit perfil', edit_place_path(@place) %></div>
+	<% end %>
+</div>

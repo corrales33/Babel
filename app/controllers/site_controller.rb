@@ -8,4 +8,9 @@ class SiteController < ApplicationController
 		#@meeting = @user.meetings
 	end
 
+	def signup
+		@users = User.all
+		@places = Place.all
+	end
+
 end

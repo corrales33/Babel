@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user 
+  helper_method :current_place
 
 	def current_user 
 	  @current_user ||= User.find(session[:user_id]) if session[:user_id] 
@@ -11,6 +12,22 @@ class ApplicationController < ActionController::Base
 
 	def require_user 
   		redirect_to '/login' unless current_user 
+	end
+
+	def require_user_registered 
+  		redirect_to '/' unless current_user.user_registered? 
+	end
+
+	def current_place 
+	  @current_place ||= Place.find(session[:place_id]) if session[:place_id] 
+	end
+
+	def require_place 
+  		redirect_to '/login' unless current_place 
+	end
+
+	def require_place_registered 
+  		redirect_to '/' unless current_place.place_registered? 
 	end
 
 end

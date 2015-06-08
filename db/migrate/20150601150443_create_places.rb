@@ -8,6 +8,7 @@ class CreatePlaces < ActiveRecord::Migration
     	t.string :address
     	t.text :offers
     	t.text :opinions
+      t.string :role
 
       t.timestamps null: false
     end

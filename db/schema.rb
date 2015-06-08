@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150604131025) do
     t.string   "address"
     t.text     "offers"
     t.text     "opinions"
+    t.string   "role"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150604131025) do
     t.string   "languages_learnt"
     t.string   "languages_without_learning"
     t.text     "hobbies"
+    t.string   "role"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "image_file_name"

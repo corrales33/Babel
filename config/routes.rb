@@ -7,8 +7,11 @@ Rails.application.routes.draw do
   	resources :meetings
   end
   resources :guests
-  get 'signup' => 'users#new'
-  get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+  get 'signup' => 'site#signup' 
+  get 'login_user' => 'sessions_user#new'
+  post 'login_user' => 'sessions_user#create'
+  delete 'logout_user' => 'sessions_user#destroy'
+  get 'login_place' => 'sessions_place#new'
+  post 'login_place' => 'sessions_place#create'
+  delete 'logout_place' => 'sessions_place#destroy'
 end
