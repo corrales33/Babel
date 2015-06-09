@@ -28,4 +28,7 @@
 	<% if current_user && current_user.email == @user.email %>
 	<div><%= link_to 'New meeting', new_user_meeting_path(@user) %></div>
 	<% end %>
+	<% if current_user && current_user.email == @user.email %>
+	<div><%= link_to 'Own meetings', user_meetings_path(@user) %></div>
+	<% end %>
 </div>

@@ -1,0 +1,11 @@
+<h2> All my meetings </h2>
+<ul>
+	<% @meetings.each do |meeting| %>
+		<li> Meeting of <%= meeting.language %> in <%= meeting.address %> at <%= meeting.date %></li>
+		<div><%= image_tag meeting.image_url.to_s, :class => "image-container" %></div>
+		<%= link_to 'Add files', edit_user_meeting_path(@user, meeting)%>
+		<%= link_to 'Destroy meeting', user_meeting_path(@user, meeting), method: :delete, data: {confirm: "Are you sure?"} %>
+	<% end %>
+</ul>
+
+<%= link_to 'Back', user_path(@user) %>

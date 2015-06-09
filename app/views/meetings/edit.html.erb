@@ -1,0 +1,7 @@
+<%= form_for [@user, @meeting], :html => { :multipart => true } do |f| %>
+
+	<%= f.label :images %>
+	<%= f.file_field :images, multiple: true %>
+	<br>
+	<%= f.submit 'Save files', class: "btn-submit" %>
+<% end %>
