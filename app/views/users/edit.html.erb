@@ -26,10 +26,4 @@
 	<%= f.submit 'Update' %>
 <% end %>
 
-<% if current_user && current_user.user_registered? %> 
-  <p class="user-edit"> 
-    <%= link_to "Edit User", edit_user_path(@user) %> 
-  </p> 
-<% end %>
-
 

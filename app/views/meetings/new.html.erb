@@ -1,0 +1,21 @@
+<h1>Organize new meeting!</h1>
+
+<%= form_for [@user, @meeting], :html => { :multipart => true } do |f| %>
+	<% if @meeting.errors.any? %>
+	<ul>
+		<% @meeting.errors.full_messages.each do |error_msg| %>
+		<li><%= error_msg %></li>
+		<% end %>
+	</ul>
+	<% end %>
+	
+	<%= f.text_field :city, :placeholder => 'City' %>
+	<br>
+	<%= f.text_field :address, :placeholder => 'Address' %>
+	<br>
+	<%= f.datetime_field :date, :placeholder => '_ _/_ _/_ _' %>
+	<br>
+	<%= f.text_field :language, :placeholder => 'Language' %>
+	<br>
+	<%= f.submit 'Organize it!', class: "btn-submit" %>
+<% end %>

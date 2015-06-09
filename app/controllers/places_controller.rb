@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-	before_action :require_place, only: [:show]
+	before_action :require_place, only: [:show, :edit]
 	def show
 		@place = Place.find params[:id]
 	end
@@ -11,7 +11,7 @@ class PlacesController < ApplicationController
 	def create
 		@place = Place.new places_params
 		if @place.save
-			redirect_to place_path(@place)
+			redirect_to login_place_path
 		elsif
 			redirect_to '/signup'
 		end
@@ -33,6 +33,6 @@ class PlacesController < ApplicationController
 	private
 
 	def places_params
-		params.require(:place).permit(:name, :password, :city, :address, :opinions, :image)	
+		params.require(:place).permit(:name, :password, :city, :address, :offers, :opinions, :image)	
 	end
 end

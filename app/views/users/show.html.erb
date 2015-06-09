@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-sm-6">
 			<div>
-				<%= image_tag @user.image_url.to_s %>
+				<%= image_tag @user.image_url.to_s, :class => "image-big" %>
 			</div>
 			<div>
 				Rating: <%= @user.rating %>
@@ -24,5 +24,8 @@
 	</div>
 	<% if current_user && current_user.email == @user.email %>
 	<div><%= link_to 'Edit perfil', edit_user_path(@user) %></div>
+	<% end %>
+	<% if current_user && current_user.email == @user.email %>
+	<div><%= link_to 'New meeting', new_user_meeting_path(@user) %></div>
 	<% end %>
 </div>

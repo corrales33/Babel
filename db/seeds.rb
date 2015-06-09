@@ -6,4 +6,4 @@ u5 = User.create( name:'Valentín', nick:'Valen', password:'maderal', email:'elm
 
 p1 = Place.create( name:'Merendero Asturias', password:'abelardo', city:'Zamora', address:'Calle General Mola, 58', offers:'2x1 drinks until 23:00 p.m', opinions:'El mejor sitio en Zamora para mantener una charla y pasártelo bien', role:'place_registered' )
 
-u1.meetings.create( participant:'Mateo', address:'Calle General Mola, 58', language:'Italian', date: Date.today+1.week )
+u1.meetings.create( participant:'Mateo', city:'Madrid', address:'Calle General Mola, 58', language:'Italian', date: Date.today+1.week )

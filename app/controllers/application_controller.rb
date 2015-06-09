@@ -11,11 +11,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def require_user 
-  		redirect_to '/login' unless current_user 
-	end
-
-	def require_user_registered 
-  		redirect_to '/' unless current_user.user_registered? 
+  		redirect_to '/login_user' unless current_user 
 	end
 
 	def current_place 
@@ -23,11 +19,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def require_place 
-  		redirect_to '/login' unless current_place 
-	end
-
-	def require_place_registered 
-  		redirect_to '/' unless current_place.place_registered? 
+  		redirect_to '/login_place' unless current_place 
 	end
 
 end

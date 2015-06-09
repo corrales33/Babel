@@ -8,30 +8,28 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
-		<div class="nav pull-right">
-          	<% if current_user %> 
-  				<ul> 
-    				<li><%= current_user.email %></li> 
-    				<li><%= link_to "Log out", logout_user_path, method: "delete" %></li> 
-  				</ul> 
-			<% else %> 
-  				<ul> 
-				    <li><%= link_to "Login User", 'login_user' %></a></li> 
-				    <li><%= link_to "Signup", 'signup' %></a></li> 
- 				</ul> 
-			<% end %>
-			<% if current_place %> 
-  				<ul> 
-    				<li><%= current_place.name %></li> 
-    				<li><%= link_to "Log out", logout_place_path, method: "delete" %></li> 
-  				</ul> 
-			<% else %> 
-  				<ul> 
-				    <li><%= link_to "Login Place", 'login_place' %></a></li> 
-				    <li><%= link_to "Signup", 'signup' %></a></li> 
- 				</ul> 
-			<% end %>
-		</div>
+		<nav class="navbar navbar-default navegator">
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      			<ul class="nav navbar-nav">
+				<% if current_user %> 
+			    	<li class="text-welcome"> Welcome <%= current_user.name %></li> 
+			    	<li class="text-navegator"><%= link_to "Log out", logout_user_path, method: "delete" %></li>  
+				<% elsif current_place %> 
+			    	<li class="text-welcome"> Welcome <%= current_place.name %></li> 
+			    	<li class="text-navegator"><%= link_to "Log out", logout_place_path, method: "delete" %></li>
+		    	<% else %> 
+			        <li class="text-navegator"><%= link_to "Create an account", 'signup' %></li>
+				    <li class="dropdown">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> Log in <span class="caret"></span></a>
+				        <ul class="dropdown-menu" role="menu">
+							<li><%= link_to "Login User", 'login_user' %></a></li>  
+							<li><%= link_to "Login Place", 'login_place' %></a></li>  
+			          	</ul>
+	        		</li>
+				<% end %>
+      			</ul>
+			</div>
+		</nav>
 		<%= yield %>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>      
 	    <script type="text/javascript" src=""></script>

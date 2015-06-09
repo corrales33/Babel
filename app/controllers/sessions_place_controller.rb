@@ -9,7 +9,7 @@ class SessionsPlaceController < ApplicationController
           session[:place_id] = @place.id
           redirect_to place_path(@place)
         else
-          redirect_to 'login'
+          redirect_to '/login_place'
         end 
 	end
 
