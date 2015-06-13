@@ -5,8 +5,11 @@
 				<%= image_tag @user.image_url.to_s, :class => "image-big" %>
 			</div>
 			<div>
-				Rating: <%= @user.rating %>
+				<% @user.calculate_average %> Rating: <%= @user.average_user %>
 			</div>
+			<% if current_user && current_user.email != @user.email %>
+			<div><%= link_to 'New rating', new_user_rating_path(@user) %></div>
+			<% end %>
 		</div>
 		<div class="col-sm-6 perfil">
 			<ul class="list">
@@ -31,4 +34,5 @@
 	<% if current_user && current_user.email == @user.email %>
 	<div><%= link_to 'Own meetings', user_meetings_path(@user) %></div>
 	<% end %>
+	<div><%= link_to 'Welcome page', root_path %></div>
 </div>

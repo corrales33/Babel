@@ -4,11 +4,10 @@ class CreateMeetings < ActiveRecord::Migration
 
     	t.integer :user_id
     	t.integer :place_id
-      t.string :city
-    	t.string :address
+    	t.string :place_meeting
     	t.string :language
     	t.datetime :date
-      t.string :participant
+      t.text :participants
 
       t.timestamps null: false
     end

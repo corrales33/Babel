@@ -1,9 +1,18 @@
 <h2> All my meetings </h2>
 <ul>
+
 	<% @meetings.each do |meeting| %>
-		<li> Meeting of <%= meeting.language %> in <%= meeting.address %> at <%= meeting.date %></li>
+
+		<li> Meeting of <%= @user.languages_without_learning %> in --- at <%= meeting.date %> with <% meeting.participants.each do |key, value| %>
+			<ul>
+				<li><%= meeting.participants[key] %><%= meeting.participants[value] %></li>
+			</ul>
+			<% end %>
+		</li>
 		<div><%= image_tag meeting.image_url.to_s, :class => "image-container" %></div>
-		<%= link_to 'Add files', edit_user_meeting_path(@user, meeting)%>
+		<div><%= video_tag meeting.video_url.to_s, :controls => true %></div>
+		<%= link_to 'Add photo', edit_user_meeting_path(@user, meeting)%>
+		<%= link_to 'Add video', add_video_path(@user, meeting)%>
 		<%= link_to 'Destroy meeting', user_meeting_path(@user, meeting), method: :delete, data: {confirm: "Are you sure?"} %>
 	<% end %>
 </ul>

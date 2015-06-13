@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609153545) do
+ActiveRecord::Schema.define(version: 20150611092848) do
 
   create_table "guests", force: :cascade do |t|
     t.string   "name"
@@ -20,14 +20,25 @@ ActiveRecord::Schema.define(version: 20150609153545) do
     t.datetime "updated_at",      null: false
   end
 
-# Could not dump table "meetings" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "meetings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.string   "place_meeting"
+    t.string   "language"
+    t.datetime "date"
+    t.text     "participants"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "image"
+    t.string   "video"
+  end
 
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.string   "password_digest"
     t.string   "city"
     t.string   "address"
+    t.float    "average_place"
     t.text     "offers"
     t.text     "opinions"
     t.string   "role"
@@ -36,12 +47,20 @@ ActiveRecord::Schema.define(version: 20150609153545) do
     t.string   "image"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.integer  "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "nick"
     t.string   "email"
     t.string   "password_digest"
-    t.integer  "rating"
+    t.float    "average_user"
     t.string   "city"
     t.integer  "age"
     t.string   "job"
@@ -51,10 +70,6 @@ ActiveRecord::Schema.define(version: 20150609153545) do
     t.string   "role"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.string   "image"
   end
 

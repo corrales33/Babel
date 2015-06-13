@@ -1,0 +1,7 @@
+<%= form_for [@user, @rating] do |f| %>
+	User: <%= @user.name %>
+	<br>
+	<%= f.label :score %>
+	<%= f.text_field :score %>
+	<%= f.submit 'Save' %>
+<% end %>

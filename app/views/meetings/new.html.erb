@@ -8,14 +8,11 @@
 		<% end %>
 	</ul>
 	<% end %>
-	
-	<%= f.text_field :city, :placeholder => 'City' %>
+
+	<%= f.collection_select(:place_id, Place.all, :id, :name) %>
 	<br>
-	<%= f.text_field :address, :placeholder => 'Address' %>
+	<%= f.date_select :date %>
 	<br>
-	<%= f.datetime_field :date, :placeholder => '_ _/_ _/_ _' %>
-	<br>
-	<%= f.text_field :language, :placeholder => 'Language' %>
-	<br>
+
 	<%= f.submit 'Organize it!', class: "btn-submit" %>
 <% end %>

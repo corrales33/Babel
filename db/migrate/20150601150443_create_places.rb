@@ -6,6 +6,7 @@ class CreatePlaces < ActiveRecord::Migration
     	t.string :password_digest
     	t.string :city
     	t.string :address
+      t.float :average_place
     	t.text :offers
     	t.text :opinions
       t.string :role

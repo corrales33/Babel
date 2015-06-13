@@ -1,8 +1,20 @@
 class MeetingsController < ApplicationController
+	before_action :require_user, only: [:show]
 
 	def index
 		@user = User.find params[:user_id]
 		@meetings = @user.meetings
+	end
+
+	def show
+		@user = User.find params[:user_id]
+		@meeting = @user.meetings.find params[:id]
+		@meeting.participants[current_user.name] = current_user.nick
+		if @meeting.save
+			redirect_to root_path
+		elsif	
+			redirect_to new_user_meeting_path(@user)
+		end
 	end
 
 	def new
@@ -28,9 +40,7 @@ class MeetingsController < ApplicationController
 	end
 
 	def update
-		#photos = []
 		@meeting = Meeting.find params[:id]
-		#@meeting.image += ','+params[:photo]
 
 		if @meeting.update meeting_params
 			flash[:notice] = "File save successfully"
@@ -41,6 +51,11 @@ class MeetingsController < ApplicationController
 		end
 	end
 
+	def add_video
+		@user = User.find params[:user_id]
+		@meeting = @user.meetings.find params[:id]
+	end
+
 	def destroy
 		meeting = Meeting.find params[:id]
 		meeting.destroy
@@ -49,7 +64,7 @@ class MeetingsController < ApplicationController
 
 	private
 	def meeting_params
-		params.require(:meeting).permit(:city, :address, :language, :date, :participant, :image)
+		params.require(:meeting).permit(:city, :language, :date, :participants, :image, :video)
 	end
 
 end

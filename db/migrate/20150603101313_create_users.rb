@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :nick
     	t.string :email
     	t.string :password_digest
-    	t.integer :rating
+    	t.float :average_user
     	t.string :city
     	t.integer :age
     	t.string :job
