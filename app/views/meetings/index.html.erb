@@ -3,12 +3,12 @@
 
 	<% @meetings.each do |meeting| %>
 
-		<li> Meeting of <%= @user.languages_without_learning %> in --- at <%= meeting.date %> with <% meeting.participants.each do |key, value| %>
+		<li> Meeting of <%= @user.languages_without_learning %> in --- at <%= meeting.date %> with <% for i in 0..meeting.participants.length-1 %>
 			<ul>
-				<li><%= meeting.participants[key] %><%= meeting.participants[value] %></li>
+				<li> <%= meeting.participants[i].name %> -- <%= meeting.participants[i].nick %> -- <%= link_to 'Show user', user_path(meeting.participants[i]) %> </li>
 			</ul>
 			<% end %>
-		</li>
+		</li> 
 		<div><%= image_tag meeting.image_url.to_s, :class => "image-container" %></div>
 		<div><%= video_tag meeting.video_url.to_s, :controls => true %></div>
 		<%= link_to 'Add photo', edit_user_meeting_path(@user, meeting)%>

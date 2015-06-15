@@ -9,7 +9,7 @@
 	</ul>
 	<% end %>
 
-	<%= f.collection_select(:place_id, Place.all, :id, :name) %>
+	<%= collection_select(:meeting, :place_id, Place.all, :id, :name) %>
 	<br>
 	<%= f.date_select :date %>
 	<br>

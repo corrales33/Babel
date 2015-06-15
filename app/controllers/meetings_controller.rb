@@ -9,7 +9,7 @@ class MeetingsController < ApplicationController
 	def show
 		@user = User.find params[:user_id]
 		@meeting = @user.meetings.find params[:id]
-		@meeting.participants[current_user.name] = current_user.nick
+		@meeting.participants.push(current_user)
 		if @meeting.save
 			redirect_to root_path
 		elsif	
@@ -64,7 +64,7 @@ class MeetingsController < ApplicationController
 
 	private
 	def meeting_params
-		params.require(:meeting).permit(:city, :language, :date, :participants, :image, :video)
+		params.require(:meeting).permit(:city, :place_meeting, :place_id, :language, :date, :participants, :image, :video)
 	end
 
 end

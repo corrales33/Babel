@@ -4,6 +4,5 @@ u3 = User.create( name:'Sergio', nick:'Ser', password:'pipita', email:'ser@gmail
 u4 = User.create( name:'Bea', nick:'Ociosa', password:'bilic', email:'beamm@gmail.com', city:'Gijón', age: 33, job:'baby-sitting', average_user: 0, languages_learnt:'English, French', languages_without_learning:'Portuguese', hobbies:'cooking, music', role: 'user_registered' )
 u5 = User.create( name:'Valentín', nick:'Valen', password:'maderal', email:'elmaderal@gmail.com', city:'Zamora', age: 58, job:'mechanic', average_user: 0, languages_learnt:'Spanish', languages_without_learning:'English', hobbies:'field, swim', role: 'user_registered' )
 
-p1 = Place.create( name:'Merendero Asturias', password:'abelardo', city:'Zamora', average_place: 0, address:'Calle General Mola, 58', offers:'2x1 drinks until 23:00 p.m', opinions:'El mejor sitio en Zamora para mantener una charla y pasártelo bien', role:'place_registered' )
-
-u1.meetings.create( place_meeting: 'Merendero Asturias', date: Date.today+1.week )
+p1 = Place.create( name:'Merendero Asturias', password:'abelardo', city:'Madrid', average_place: 0, address:'Calle General Mola, 58', offers:'2x1 drinks until 23:00 p.m', opinions:'El mejor sitio en Zamora para mantener una charla y pasártelo bien', role:'place_registered' )
+p2 = Place.create( name:'El cortijo', password:'cortijo', city:'Madrid', average_place: 0, address:'Calle Nueva, 3', offers:'Happy hour at 00.00 p.m', opinions:'Un buen tapeo y ambiente genial', role:'place_registered' )

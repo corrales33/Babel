@@ -75,12 +75,14 @@
 					<% @users_total.each do |user| %>
 						<% if user.id == meeting.user_id %>
 						<% @places_total.each do |place| %>
+							<% if place.id == meeting.place_id %>
 							<ul>
 								<li> Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %></li>
 							</ul>	
 							<div>
 								<%= link_to "ASSIST", user_meeting_path(user, meeting) %>
 							</div>
+							<%end%>
 						<%end%>	
 						<%end%>
 					<%end%>
