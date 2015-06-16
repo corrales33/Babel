@@ -14,4 +14,8 @@ class Meeting < ActiveRecord::Base
 		meetings = Meeting.where('date > ?', Date.today).limit(param)
 	end
 
+	def self.save_participants
+		meetings = Meeting.where.not(part_confirm: nil)
+	end
+
 end

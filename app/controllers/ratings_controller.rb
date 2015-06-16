@@ -8,7 +8,7 @@ class RatingsController < ApplicationController
 		@user = User.find params[:user_id]
 		@rating = @user.ratings.new rating_params
 		if @rating.save
-			flash[:notice] = "Rating created successfully"
+			flash[:alert] = "Rating created successfully"
 			redirect_to user_path(@user)
 		elsif	
 			flash[:alert] = "Rating has not been created"

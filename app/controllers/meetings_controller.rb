@@ -6,15 +6,25 @@ class MeetingsController < ApplicationController
 		@meetings = @user.meetings
 	end
 
+	def assist_meeting
+		@user = User.find params[:user_id]
+		@meeting = Meeting.find params[:id]
+		user_exist = @meeting.participants.select{|user| user.id == current_user.id}
+		if user_exist.blank?
+			@meeting.participants.push(current_user)
+			@meeting.save	
+			flash[:alert] = 'Apuntado succesfully'
+			redirect_to root_path
+		else
+			flash[:alert] = 'Ya estás apuntado a la oferta'
+			redirect_to root_path
+		end
+	end
+
 	def show
+		@places_total = Place.all
 		@user = User.find params[:user_id]
 		@meeting = @user.meetings.find params[:id]
-		@meeting.participants.push(current_user)
-		if @meeting.save
-			redirect_to root_path
-		elsif	
-			redirect_to new_user_meeting_path(@user)
-		end
 	end
 
 	def new
@@ -26,7 +36,7 @@ class MeetingsController < ApplicationController
 		@user = User.find params[:user_id]
 		@meeting = @user.meetings.new meeting_params
 		if @meeting.save
-			flash[:notice] = "Meeting created successfully"
+			flash[:alert] = "Meeting created successfully"
 			redirect_to root_path
 		elsif	
 			flash[:alert] = "Meeting has not been created"
@@ -43,7 +53,7 @@ class MeetingsController < ApplicationController
 		@meeting = Meeting.find params[:id]
 
 		if @meeting.update meeting_params
-			flash[:notice] = "File save successfully"
+			flash[:alert] = "File save successfully"
 			redirect_to user_meetings_path
 		else
 			flash[:alert] = "File has not been updated"
@@ -62,9 +72,15 @@ class MeetingsController < ApplicationController
 		redirect_to user_meetings_path
 	end
 
+	def update_parameter
+		@user = User.find params[:user_id]
+		@meeting = Meeting.find params[:id]
+		redirect_to root_path
+	end
+
 	private
 	def meeting_params
-		params.require(:meeting).permit(:city, :place_meeting, :place_id, :language, :date, :participants, :image, :video)
+		params.require(:meeting).permit(:city, :place_meeting, :place_id, :language, :date, :participants, :part_confirm, :image, :video)
 	end
 
 end

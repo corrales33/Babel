@@ -1,3 +1,4 @@
+<%= flash_message %>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 title">
@@ -78,10 +79,41 @@
 							<% if place.id == meeting.place_id %>
 							<ul>
 								<li> Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %></li>
-							</ul>	
-							<div>
-								<%= link_to "ASSIST", user_meeting_path(user, meeting) %>
-							</div>
+							</ul>
+							<% if current_user%>
+								<% user_exist = meeting.participants.select{|user| user.id == current_user.id} %>
+								<% if (current_user && current_user.email != user.email) && (true == user_exist.blank?) %>
+									<div><%= link_to "ASSIST", user_meeting_path(user, meeting) %></div>
+								<% elsif (current_user && current_user.email != user.email) && (false == user_exist.blank?) %>
+									YA ESTAS APUNTADO
+								<% end %>
+							<% end %>						
+							<%end%>
+						<%end%>	
+						<%end%>
+					<%end%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="row text-titles">
+			<div class="col-sm-12 border-titles">
+				<h3> Meetings confirmadas </h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 meetings-confirm">
+				<% @meetings_confirm.each do |meeting| %>
+				<div class="row list-confirm">
+					<% @users_total.each do |user| %>
+						<% if user.id == meeting.user_id %>
+						<% @places_total.each do |place| %>
+							<% if place.id == meeting.place_id %>
+							<ul>
+								<li> Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %> with <span><%= meeting.part_confirm %></span></li>
+							</ul>						
 							<%end%>
 						<%end%>	
 						<%end%>

@@ -1,10 +1,28 @@
-<%= form_for [current_user, @meeting], :html => { :multipart => true } do |f| %>
+<% if current_user.id == @meeting.user_id %> 
 
-Meeting of <%= @user.languages_without_learning %> organized by <%= @user.name %> in <%= @meeting.place_meeting %> at <%= @meeting.date %>
+	<%= form_for [current_user, @meeting], :url => url_for(:controller => 'meetings', :action => 'update_parameter'), :html => { :multipart => true, :method => "post" } do |f| %>
 
-	<%= f.text_field :participants, :value => current_user.name %>
-	<br>
-	<%= f.text_field :participants, :value => current_user.nick %>
-	<br>
-	<%= f.submit 'Assist!', class: "btn-submit" %>
+	Meeting of <%= @user.languages_without_learning %> in --- at <%= @meeting.date %> with <% for i in 0..@meeting.participants.length-1 %>
+		<ul>
+			<li><%= @meeting.participants[i].name %> -- <%= @meeting.participants[i].nick %> -- <%= link_to 'Show user', user_path(@meeting.participants[i]) %> 
+			</li>
+		</ul>
+		<% end %>
+		
+		They are your participants, choose one of them!! <%= collection_select(:meeting, :part_confirm, @meeting.participants, :name, :name) %>
+		<%= f.submit 'CONFIRM', class: "btn-submit" %>
+		<% end %>
+<% else %>
+	<%= form_for [current_user, @meeting], :html => { :multipart => true, :method => "post" } do |f| %>
+
+	Meeting of <%= @user.languages_without_learning %> organized by <%= @user.name %> in <% @places_total.each do |place| %>
+			<% if place.id == @meeting.place_id %>
+				<%= place.name %>
+			<% end %>
+		<% end %> at <%= @meeting.date %>
+
+		<% f.text_field :participants, :value => current_user %>
+		<br>
+		<%= f.submit 'Assist!', class: "btn-submit" %>
+	<% end %>
 <% end %>

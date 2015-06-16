@@ -8,6 +8,7 @@ class CreateMeetings < ActiveRecord::Migration
     	t.string :language
     	t.datetime :date
       t.text :participants
+      t.string :part_confirm
 
       t.timestamps null: false
     end

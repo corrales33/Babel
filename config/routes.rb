@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   root :to => "site#welcome"
+  post 'users/:user_id/meetings/:id' => 'meetings#assist_meeting'
+  post 'users/:user_id/meetings/:id/confirm' => 'meetings#update_parameter', as: 'confirm'
+
   resources :users do
     resources :meetings
     resources :ratings
   end
   resources :places do
-  	resources :meetings
+    resources :meetings
     resources :ratings
   end
   resources :guests
@@ -16,6 +19,4 @@ Rails.application.routes.draw do
   get 'login_place' => 'sessions_place#new'
   post 'login_place' => 'sessions_place#create'
   delete 'logout_place' => 'sessions_place#destroy'
-  get 'users/:user_id/meetings/:id/add_video' => 'meetings#add_video', as: 'add_video'
-  get 'users/:user_id/meetings/:id/save_participant' => 'meetings#save_participant', as: 'save_participant'
 end

@@ -13,8 +13,10 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new users_params
 		if @user.save
-			redirect_to user_path(@user)
+			flash[:alert] = "User created successfully"
+			redirect_to login_user_path
 		elsif
+			flash[:alert] = "User has not been created"
 			redirect_to '/signup'
 		end
 	end
@@ -26,8 +28,10 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find params[:id]
 		if @user.update users_params
+			flash[:alert] = "User updated successfully"
 			redirect_to @user
 		else
+			flash[:alert] = "User has not been updated"
 			redirect_to user_path(@user)
 		end
 	end

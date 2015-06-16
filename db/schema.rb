@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150611092848) do
 
-  create_table "guests", force: :cascade do |t|
-    t.string   "name"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "meetings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "place_id"
@@ -27,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150611092848) do
     t.string   "language"
     t.datetime "date"
     t.text     "participants"
+    t.string   "part_confirm"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "image"
