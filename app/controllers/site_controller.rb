@@ -1,7 +1,6 @@
 class SiteController < ApplicationController
 
 	def welcome
-		binding.pry
 		@users = User.last_users_registered(4)
 		@places = Place.last_places_registered(4)
 		@meetings_done = Meeting.last_meetings_done(5)

@@ -12,6 +12,7 @@
 		They are your participants, choose one of them!! <%= collection_select(:meeting, :part_confirm, @meeting.participants, :name, :name) %>
 		<%= f.submit 'CONFIRM', class: "btn-submit" %>
 		<% end %>
+		
 <% else %>
 	<%= form_for [current_user, @meeting], :html => { :multipart => true, :method => "post" } do |f| %>
 

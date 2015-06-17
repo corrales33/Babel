@@ -78,7 +78,9 @@
 						<% @places_total.each do |place| %>
 							<% if place.id == meeting.place_id %>
 							<ul>
-								<li> Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %></li>
+								<% if meeting.part_confirm.nil? %>
+									<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %></li>
+								<% end %>
 							</ul>
 							<% if current_user%>
 								<% user_exist = meeting.participants.select{|user| user.id == current_user.id} %>

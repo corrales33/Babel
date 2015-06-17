@@ -73,8 +73,10 @@ class MeetingsController < ApplicationController
 	end
 
 	def update_parameter
-		@user = User.find params[:user_id]
 		@meeting = Meeting.find params[:id]
+		@meeting.part_confirm = params[:meeting][:part_confirm]
+		@meeting.save
+		flash[:alert] = 'Confirmado'
 		redirect_to root_path
 	end
 
