@@ -1,15 +1,77 @@
 <%= flash_message %>
 <h2> All my meetings </h2>
-<ul>
-	<% @meetings.each do |meeting| %>
-		<li> Meeting of <%= @user.languages_without_learning %> in --- at <%= meeting.date %> <%= link_to 'Show meeting', user_meeting_path(@user, meeting) %>
-		</li>
-		<div><%= image_tag meeting.image_url.to_s, :class => "image-container" %></div>
-		<div><%= video_tag meeting.video_url.to_s, :controls => true %></div>
-		<%= link_to 'Add photo', edit_user_meeting_path(@user, meeting)%>
-		<%= link_to 'Destroy meeting', user_meeting_path(@user, meeting), method: :delete, data: {confirm: "Are you sure?"} %>
-	<% end %>
 
-</ul>
+<div class="row">
+	<div class="row text-titles">
+		<div class="col-sm-6 border-titles">
+			<h3> Meetings por confirmar </h3>
+		</div>
+		<div class="col-sm-6 border-titles">
+			<h3> Próximas meetings confirmadas </h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6 meetings-por-confirmar">
+		<% @own_next_meetings.each do |meeting| %>
+			<div class="row">
+				<% @places_total.each do |place| %>
+					<% if place.id == meeting.place_id %>
+					<ul>
+						<% if meeting.part_confirm.nil? %>
+							<li> Meeting of <%= @user.languages_without_learning %> in <%= place.name %> at <%= meeting.date %> <%= link_to 'Show participants', user_meeting_path(@user, meeting) %> <%= link_to 'Destroy meeting', user_meeting_path(@user, meeting), method: :delete, data: {confirm: "Are you sure?"} %> </li>
+						<% end %>
+					</ul>
+					<%end%>
+				<%end%>
+			</div>
+		<%end%>
+		</div>
+		<div class="col-sm-6 next-meetings">
+		<% @meetings.each do |meeting| %>
+			<div class="row">
+				<% @places_total.each do |place| %>
+					<% if place.id == meeting.place_id %>
+					<ul>
+						<% if meeting.part_confirm %>
+							<li> Meeting of <%= @user.languages_without_learning %> with <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %> <%= link_to 'Destroy meeting', user_meeting_path(@user, meeting), method: :delete, data: {confirm: "Are you sure?"} %> </li>
+						<% end %>
+					</ul>
+					<%end%>
+				<%end%>
+			</div>
+		<%end%>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="row text-titles">
+		<div class="col-sm-12 border-titles">
+			<h3> Meetings done </h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 meetings-confirm">
+			<% @own_meetings_done.each do |meeting| %>
+			<div class="row list-confirm">
+				<% @places_total.each do |place| %>
+					<% if place.id == meeting.place_id %>
+					<ul>
+						<% if meeting.part_confirm %>
+							<li> Meeting of <%= @user.languages_without_learning %> with <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %> <%= link_to 'Destroy meeting', user_meeting_path(@user, meeting), method: :delete, data: {confirm: "Are you sure?"} %> </li>
+							<div><%= image_tag meeting.image_url.to_s, :class => "image-container" %></div>
+							<%= link_to 'Add photo', edit_user_meeting_path(@user, meeting)%>
+						<% end %>
+					</ul>
+					<%end%>
+				<%end%>
+			</div>
+			<%end%>
+		</div>
+	</div>
+</div>
+<div><%= link_to 'Welcome page', root_path %></div>
+<div><%= link_to 'Back', user_path(@user) %></div>
 
-<%= link_to 'Back', user_path(@user) %>
+
+
+

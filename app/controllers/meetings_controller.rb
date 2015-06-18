@@ -2,8 +2,11 @@ class MeetingsController < ApplicationController
 	before_action :require_user, only: [:show]
 
 	def index
+		@places_total = Place.all
 		@user = User.find params[:user_id]
 		@meetings = @user.meetings
+		@own_meetings_done = @meetings.last_meetings_done(10)
+		@own_next_meetings = @meetings.next_meetings(10)
 	end
 
 	def assist_meeting

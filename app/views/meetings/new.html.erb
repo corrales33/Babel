@@ -12,7 +12,7 @@
 
 	<%= collection_select(:meeting, :place_id, Place.all, :id, :name) %>
 	<br>
-	<%= f.date_select :date %>
+	<%= f.datetime_select :date %>
 	<br>
 
 	<%= f.submit 'Organize it!', class: "btn-submit" %>

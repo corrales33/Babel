@@ -1,10 +1,10 @@
 class SiteController < ApplicationController
 
 	def welcome
-		@users = User.last_users_registered(4)
-		@places = Place.last_places_registered(4)
-		@meetings_done = Meeting.last_meetings_done(5)
-		@next_meetings = Meeting.next_meetings(5)
+		@users = User.last_users_registered(5)
+		@places = Place.last_places_registered(5)
+		@meetings_done = Meeting.last_meetings_done(10)
+		@next_meetings = Meeting.next_meetings(15)
 		@meetings_confirm = Meeting.save_participants
 		@users_total = User.all
 		@places_total = Place.all

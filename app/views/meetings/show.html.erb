@@ -1,18 +1,24 @@
-<% if current_user.id == @meeting.user_id %> 
-
-	<%= form_for [current_user, @meeting], :url => url_for(:controller => 'meetings', :action => 'update_parameter'), :html => { :multipart => true, :method => "post" } do |f| %>
-
-	Meeting of <%= @user.languages_without_learning %> in --- at <%= @meeting.date %> with <% for i in 0..@meeting.participants.length-1 %>
-		<ul>
-			<li><%= @meeting.participants[i].name %> -- <%= @meeting.participants[i].nick %> -- <%= link_to 'Show user', user_path(@meeting.participants[i]) %> 
-			</li>
-		</ul>
+<% if current_user.id == @meeting.user_id %>
+	<% if @meeting.participants.empty? %>
+		NO HAY PARTICIPANTES AÚN
+		<div><%= link_to 'Back', user_meetings_path(@user) %></div>
+	<% else %>
+		<%= form_for [current_user, @meeting], :url => url_for(:controller => 'meetings', :action => 'update_parameter'), :html => { :multipart => true, :method => "post" } do |f| %>
+		Meeting of <%= @user.languages_without_learning %> in <% @places_total.each do |place| %>
+				<% if place.id == @meeting.place_id %>
+					<%= place.name %>
+				<% end %>
+			<% end %> at <%= @meeting.date %> with <% for i in 0..@meeting.participants.length-1 %>
+			<ul>
+				<li> <div>Nombre: <%= @meeting.participants[i].name %></div> <div>Nick: <%= @meeting.participants[i].nick %></div> <%= link_to 'Show user', user_path(@meeting.participants[i]) %> 
+				</li>
+			</ul>
+			<% end %>
+			They are your participants, choose one of them!! <%= collection_select(:meeting, :part_confirm, @meeting.participants, :name, :name) %>
+			<%= f.submit 'CONFIRM', class: "btn-submit" %>
+			<div><%= link_to 'Back', user_meetings_path(@user) %></div>
 		<% end %>
-		
-		They are your participants, choose one of them!! <%= collection_select(:meeting, :part_confirm, @meeting.participants, :name, :name) %>
-		<%= f.submit 'CONFIRM', class: "btn-submit" %>
-		<% end %>
-		
+	<% end %>	
 <% else %>
 	<%= form_for [current_user, @meeting], :html => { :multipart => true, :method => "post" } do |f| %>
 

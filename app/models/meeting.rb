@@ -12,10 +12,12 @@ class Meeting < ActiveRecord::Base
 
 	def self.next_meetings param
 		meetings = Meeting.where('date > ?', Date.today).limit(param)
+		next_meetings = meetings.order('date ASC')
 	end
 
 	def self.save_participants
 		meetings = Meeting.where.not(part_confirm: nil)
+		meetings_confirm = meetings.order('date ASC')
 	end
 
 end
