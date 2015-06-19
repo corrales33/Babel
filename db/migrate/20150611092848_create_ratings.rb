@@ -5,7 +5,7 @@ class CreateRatings < ActiveRecord::Migration
     	t.integer :user_id
     	t.integer :place_id
     	t.integer :score
-
+ 
       t.timestamps null: false
     end
   end

@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :languages_learnt
     	t.string :languages_without_learning
     	t.text :hobbies
-        t.string :role
+        t.text :participants_in_rating
 
       t.timestamps null: false
     end

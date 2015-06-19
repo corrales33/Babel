@@ -1,7 +1,10 @@
-<%= form_for [@user, @rating] do |f| %>
+<%= form_for [@user, @rating], :html => { :multipart => true, :method => "post" } do |f| %>
 	User: <%= @user.name %>
 	<br>
 	<%= f.label :score %>
 	<%= f.text_field :score %>
-	<%= f.submit 'Save' %>
+	<br>
+	<% f.text_field :participants_in_rating, :value => current_user.id %>
+
+	<%= f.submit 'Save rating', class: "btn-submit" %>
 <% end %>

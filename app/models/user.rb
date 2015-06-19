@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 	attr_accessor :image
 	mount_uploader :image, ImageUploader
 	has_secure_password
+	serialize :participants_in_rating, Array
 
 	def user_registered? 
   		self.role == 'user_registered' 

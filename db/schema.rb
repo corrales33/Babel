@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20150611092848) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "image"
-    t.string   "video"
   end
 
   create_table "places", force: :cascade do |t|
@@ -35,7 +34,6 @@ ActiveRecord::Schema.define(version: 20150611092848) do
     t.float    "average_place"
     t.text     "offers"
     t.text     "opinions"
-    t.string   "role"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "image"
@@ -61,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150611092848) do
     t.string   "languages_learnt"
     t.string   "languages_without_learning"
     t.text     "hobbies"
-    t.string   "role"
+    t.text     "participants_in_rating"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "image"

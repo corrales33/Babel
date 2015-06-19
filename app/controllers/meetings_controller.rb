@@ -1,5 +1,4 @@
 class MeetingsController < ApplicationController
-	before_action :require_user, only: [:show]
 
 	def index
 		@places_total = Place.all
@@ -85,7 +84,7 @@ class MeetingsController < ApplicationController
 
 	private
 	def meeting_params
-		params.require(:meeting).permit(:city, :place_meeting, :place_id, :language, :date, :participants, :part_confirm, :image, :video)
+		params.require(:meeting).permit(:city, :place_meeting, :place_id, :language, :date, :participants, :part_confirm, :image)
 	end
 
 end

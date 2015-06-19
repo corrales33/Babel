@@ -9,7 +9,6 @@ class CreatePlaces < ActiveRecord::Migration
       t.float :average_place
     	t.text :offers
     	t.text :opinions
-      t.string :role
 
       t.timestamps null: false
     end

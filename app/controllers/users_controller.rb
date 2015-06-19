@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find params[:id]
-		@ratings = @user.ratings
+		@rating = @user.ratings
 	end
 
 	def new
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 	private
 
 	def users_params
-		params.require(:user).permit(:name, :nick, :email, :password, :average_user, :city, :age, :job, :languages_learnt, :languages_without_learning, :hobbies, :image)	
+		params.require(:user).permit(:name, :nick, :email, :password, :participants_in_rating, :average_user, :city, :age, :job, :languages_learnt, :languages_without_learning, :hobbies, :image)	
 	end
 
 end
