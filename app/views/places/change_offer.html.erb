@@ -1,0 +1,10 @@
+<%= form_for @place, :html => { :multipart => true } do |f| %>
+	<%= f.label :offers %>
+	<%= f.text_field :offers %>
+	<br>
+	<%= f.label :image_offer %>
+	<%= f.file_field :image_offer %>
+	<br>
+	<%= f.submit 'Update' %>
+<% end %>
+<div><%= link_to 'Back', place_path(@place) %></div>

@@ -35,7 +35,7 @@
 				<div class="row">
 					<ul>
 						<li><%= place.name %></li>
-							<% if current_place && current_place.id != place.id %>
+							<% if current_user || (current_place && current_place.id != place.id) %>
 							<%= link_to "Show place", place_path(place) %>
 							<% end %>
 						<ul>
@@ -149,6 +149,28 @@
 						<%end%>	
 						<%end%>
 					<%end%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="row text-titles">
+			<div class="col-sm-12 border-titles">
+				<h3> Current offers in our places </h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 meetings-confirm">
+				<% @places_total.each do |place| %>	
+				<div class="row list-confirm">
+					<ul>
+						<li><div><%= image_tag place.image_offer_url.to_s %></div>
+						<div><%= place.name %></div></li>
+						<% if current_place.nil? || current_place.name != place.name %>
+							<div><%= link_to "Show Place", place_path(place) %></div>
+						<% end %>
+					</ul>						
 				</div>
 				<%end%>
 			</div>

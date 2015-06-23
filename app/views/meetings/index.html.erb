@@ -82,10 +82,10 @@
 							<li> Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> with <%= meeting.part_confirm %> at <%= meeting.date %></li>
 						<% end %>
 					</ul>
-					<div><%= link_to 'Back', place_path(@place) %></div>
 					<% end %>
 				<% end %>
 			<% end %>
 		<% end %>
 	<% end %>			
+	<div><%= link_to 'Back', place_path(@place) %></div>
 <% end %>

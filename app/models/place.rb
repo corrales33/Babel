@@ -1,8 +1,9 @@
 class Place < ActiveRecord::Base
 	has_many :meetings
 	has_many :opinions
-	attr_accessor :image
+	attr_accessor :image, :image_offer
 	mount_uploader :image, ImageUploader
+	mount_uploader :image_offer, ImageUploader
 	has_secure_password
 
 	def place_registered? 

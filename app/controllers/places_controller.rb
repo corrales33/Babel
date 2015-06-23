@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-	before_action :require_place, only: [:show, :edit]
+	before_action :require_place, only: [:edit]
 	def show
 		@place = Place.find params[:id]
 	end
@@ -34,9 +34,13 @@ class PlacesController < ApplicationController
 		end
 	end
 
+	def change_offer
+		@place = Place.find params[:place_id]
+	end
+
 	private
 
 	def places_params
-		params.require(:place).permit(:name, :password, :city, :average_place, :address, :offers, :opinions, :image)	
+		params.require(:place).permit(:name, :password, :city, :average_place, :address, :offers, :opinions, :image, :image_offer)	
 	end
 end

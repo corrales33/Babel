@@ -3,7 +3,7 @@
 		<% @opinions.each do |opinion| %>
 			<% @users_total.each do |user| %>
 				<% if (user.id == opinion.user_id) && (@place.id == opinion.place_id) %>
-					<li><%= user.name %> says: <%= opinion.comment %></li>
+					<li><%= image_tag user.image_url.to_s %> <%= user.name %> published at <%= opinion.created_at %>: <div><%= opinion.comment %></div></li>
 				<% end %>
 			<% end %>
 		<% end %>
