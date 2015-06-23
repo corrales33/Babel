@@ -7,8 +7,8 @@ class CreatePlaces < ActiveRecord::Migration
     	t.string :city
     	t.string :address
       t.float :average_place
+      t.string :timetable
     	t.text :offers
-    	t.text :opinions
 
       t.timestamps null: false
     end

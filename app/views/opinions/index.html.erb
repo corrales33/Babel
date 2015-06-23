@@ -1,0 +1,14 @@
+<h2> All opinions </h2>
+	<ul>
+		<% @opinions.each do |opinion| %>
+			<% @users_total.each do |user| %>
+				<% if (user.id == opinion.user_id) && (@place.id == opinion.place_id) %>
+					<li><%= user.name %> says: <%= opinion.comment %></li>
+				<% end %>
+			<% end %>
+		<% end %>
+	</ul>
+<div><%= link_to 'Back', place_path(@place) %></div>
+<% if current_user %>
+	<div><%= link_to 'Nueva opinion', new_place_opinion_path(@place) %></div>
+<% end %>

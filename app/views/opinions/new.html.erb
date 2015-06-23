@@ -1,0 +1,17 @@
+<h1>Tell us your opinion!</h1>
+
+<%= form_for [@place, @opinion], :html => { :multipart => true } do |f| %>
+	<% if @opinion.errors.any? %>
+	<ul>
+		<% @opinion.errors.full_messages.each do |error_msg| %>
+		<li><%= error_msg %></li>
+		<% end %>
+	</ul>
+	<% end %>
+
+	<%= f.text_area :comment, :placeholder => 'Introduce your opinion' %>
+	<br>
+	<%= f.text_field :user_id, :value => current_user.id %>
+
+	<%= f.submit 'Send your opinion!', class: "btn-submit" %>
+<% end %>

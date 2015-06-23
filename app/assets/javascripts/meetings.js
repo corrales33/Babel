@@ -1,3 +1,19 @@
+/*
+function myFunction () {
+	var x = document.getElementById('mySelect').value;
+	document.getElementById("alberto").innerHTML = "You selected: " + x;
+	var urlDest = window.location
+	$.ajax({
+		type: 'POST',
+		url: urlDest,
+		data: x,
+		success: function(){alert('Success: true');},
+		error: function(){alert('Success: false');},
+		dataType: 'json'
+	});
+};
+*/
+	
 
 /*
 $(document).ready(function(){

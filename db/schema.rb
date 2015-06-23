@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611092848) do
+ActiveRecord::Schema.define(version: 20150619125151) do
 
   create_table "meetings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "place_id"
     t.string   "place_meeting"
     t.string   "language"
+    t.string   "city"
     t.datetime "date"
     t.text     "participants"
     t.string   "part_confirm"
@@ -26,14 +27,22 @@ ActiveRecord::Schema.define(version: 20150611092848) do
     t.string   "image"
   end
 
+  create_table "opinions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.string   "password_digest"
     t.string   "city"
     t.string   "address"
     t.float    "average_place"
+    t.string   "timetable"
     t.text     "offers"
-    t.text     "opinions"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "image"

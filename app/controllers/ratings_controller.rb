@@ -12,7 +12,7 @@ class RatingsController < ApplicationController
 			@user.save
 			flash[:alert] = "Rating created successfully"
 			redirect_to user_path(@user)
-		elsif	
+		else	
 			flash[:alert] = "Rating has not been created"
 			redirect_to user_path(@user)
 		end 	

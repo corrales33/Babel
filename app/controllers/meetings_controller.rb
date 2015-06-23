@@ -1,11 +1,18 @@
 class MeetingsController < ApplicationController
 
 	def index
-		@places_total = Place.all
-		@user = User.find params[:user_id]
-		@meetings = @user.meetings
-		@own_meetings_done = @meetings.last_meetings_done(10)
-		@own_next_meetings = @meetings.next_meetings(10)
+		if current_user 
+			@places_total = Place.all
+			@user = User.find params[:user_id]
+			@meetings = @user.meetings
+			@own_meetings_done = @meetings.last_meetings_done(10)
+			@own_next_meetings = @meetings.next_meetings(10)
+		elsif current_place
+			@places_total = Place.all
+			@users_total = User.all
+			@place = Place.find params[:place_id]
+			@meetings_in_my_place = @place.meetings
+		end	
 	end
 
 	def assist_meeting
@@ -30,6 +37,7 @@ class MeetingsController < ApplicationController
 	end
 
 	def new
+		@places_total = Place.all
 		@user = User.find params[:user_id]
 		@meeting = @user.meetings.new
 	end
@@ -61,11 +69,6 @@ class MeetingsController < ApplicationController
 			flash[:alert] = "File has not been updated"
 			redirect_to edit_user_meeting_path(@user)
 		end
-	end
-
-	def add_video
-		@user = User.find params[:user_id]
-		@meeting = @user.meetings.find params[:id]
 	end
 
 	def destroy

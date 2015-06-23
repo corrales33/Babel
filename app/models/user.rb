@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :meetings
 	has_many :ratings
+	has_many :opinions
 	validates :name, uniqueness: true
 	validates :name, presence: true
 	attr_accessor :image

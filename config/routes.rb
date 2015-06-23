@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   resources :users do
     resources :meetings
     resources :ratings
+    resources :opinions
   end
   resources :places do
     resources :meetings
     resources :ratings
+    resources :opinions
   end
-  resources :guests
   get 'signup' => 'site#signup' 
   get 'login_user' => 'sessions_user#new'
   post 'login_user' => 'sessions_user#create'

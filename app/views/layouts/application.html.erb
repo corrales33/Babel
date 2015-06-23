@@ -18,6 +18,7 @@
 				<% elsif current_place %> 
 			    	<li class="text-welcome"> Welcome <%= current_place.name %></li> 
 			    	<li class="text-navegator"><%= link_to "Log out", logout_place_path, method: "delete" %></li>
+			    	<li class="text-navegator"><%= link_to "My profile", place_path(current_place) %></li>
 		    	<% else %> 
 			        <li class="text-navegator"><%= link_to "Create an account", 'signup' %></li>
 				    <li class="dropdown">
