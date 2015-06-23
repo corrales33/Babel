@@ -7,6 +7,7 @@ class MeetingsController < ApplicationController
 			@meetings = @user.meetings
 			@own_meetings_done = @meetings.last_meetings_done(10)
 			@own_next_meetings = @meetings.next_meetings(10)
+			@meetings_confirm = Meeting.save_participants
 		elsif current_place
 			@places_total = Place.all
 			@users_total = User.all
@@ -67,7 +68,7 @@ class MeetingsController < ApplicationController
 			redirect_to user_meetings_path
 		else
 			flash[:alert] = "File has not been updated"
-			redirect_to edit_user_meeting_path(@user)
+			redirect_to edit_user_meeting_path(@meeting)
 		end
 	end
 
@@ -85,9 +86,18 @@ class MeetingsController < ApplicationController
 		redirect_to root_path
 	end
 
+	def add_photo
+		@user = User.find params[:user_id]
+		@meeting = Meeting.find params[:id]
+		#@meeting.part_confirm = params[:meeting][:part_confirm]
+		@meeting.save
+		flash[:alert] = 'File save'
+		redirect_to user_meetings_path(@user)
+	end
+
 	private
 	def meeting_params
-		params.require(:meeting).permit(:city, :place_meeting, :place_id, :language, :date, :participants, :part_confirm, :image )
+		params.require(:meeting).permit(:city, :place_meeting, :place_id, :language, :date, :participants, :part_confirm, :image, :photo)
 	end
 
 end

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root :to => "site#welcome"
   post 'users/:user_id/meetings/:id' => 'meetings#assist_meeting'
   post 'users/:user_id/meetings/:id/confirm' => 'meetings#update_parameter', as: 'confirm'
+  post 'users/:user_id/meetings/:id/add_photo' => 'meetings#add_photo', as: 'add'
   get 'places/:place_id/change_offer' => 'places#change_offer', as: 'change_offer'
 
   resources :users do
