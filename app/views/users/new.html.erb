@@ -1,36 +1,60 @@
-<h1>Sign up</h1>
-
-<%= form_for @user, :html => { :multipart => true } do |f| %>
-	<% if @user.errors.any? %>
-	<ul>
-		<% @user.errors.full_messages.each do |error_msg| %>
-		<li><%= error_msg %></li>
+<div class="container">
+    <div class="page-header">
+        <div class="col-md-12">
+            <h1>
+            	Registro como usuario
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<form class="col-md-4"></form>
+	<div class="col-md-4">
+	<%= form_for @user, :html => { :multipart => true } do |f| %>
+		<% if @user.errors.any? %>
+		<ul>
+			<% @user.errors.full_messages.each do |error_msg| %>
+			<li><%= error_msg %></li>
+			<% end %>
+		</ul>
 		<% end %>
-	</ul>
+	    <div class="form-group">
+	    	<%= f.text_field :name, class: "form-control input-lg", :placeholder => 'Nombre' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.text_field :nick, class: "form-control input-lg", :placeholder => 'Nick' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.email_field :email, class: "form-control input-lg", :placeholder => 'Email' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.password_field :password, class: "form-control input-lg", :placeholder => 'Contraseña' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.text_field :city, class: "form-control input-lg", :placeholder => 'Ciudad' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.text_field :age, class: "form-control input-lg", :placeholder => 'Edad' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.text_field :job, class: "form-control input-lg", :placeholder => 'Profesión' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.text_field :hobbies, class: "form-control input-lg", :placeholder => 'Hobbies' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.text_field :languages_learnt, class: "form-control input-lg", :placeholder => '¿Qué idiomas sabes?' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.text_field :languages_without_learning, class: "form-control input-lg", :placeholder => '¿Qué idioma quieres practicar?' %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.file_field :image %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.submit '¡Crear!', class: "btn btn-primary btn-lg btn-block" %>
+	    </div>
+	</div>
 	<% end %>
-	
-	<%= f.text_field :name, :placeholder => 'Name' %>
-	<br>
-	<%= f.text_field :nick, :placeholder => 'Nick' %>
-	<br>
-	<%= f.email_field :email, :placeholder => 'Email' %>
-	<br>
-	<%= f.password_field :password, :placeholder => 'Password' %>
-	<br>
-	<%= f.text_field :city, :placeholder => 'City' %>
-	<br>
-	<%= f.text_field :age, :placeholder => 'Age' %>
-	<br>
-	<%= f.text_field :job, :placeholder => 'Job' %>
-	<br>
-	<%= f.text_field :hobbies, :placeholder => 'Hobbies' %>
-	<br>
-	<%= f.text_field :languages_learnt, :placeholder => 'Languages learnt' %>
-	<br>
-	<%= f.text_field :languages_without_learning, :placeholder => 'Languages without learning' %>
-	<br>
-	<%= f.label :image %>
-	<%= f.file_field :image %>
-	<br>
-	<%= f.submit 'Create an user', class: "btn-submit" %>
-<% end %>
+	<form class="col-md-4"></form>
+</div>

@@ -1,178 +1,201 @@
 <%= flash_message %>
+<div class="pb-page-header">
+    <div class="container">
+        <div class="page-header">
+            <h1>
+                Novedades 
+            </h1>
+        </div>
+    </div>
+</div>
 <div class="container">
-	<div class="row">
-		<div class="col-sm-12 title">
-			<h2> Novedades </h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="row text-titles">
-			<div class="col-sm-6 border-titles">
-				<h3> Últimos usuarios </h3>
-			</div>
-			<div class="col-sm-6 border-titles">
-				<h3> Últimos establecimientos </h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 users">
-				<% @users.each do |user| %>
-				<div class="row">
-					<ul>
-						<li><%= link_to (image_tag user.image_url.to_s, class: "image-user"), user_path(user) %></li>
-						<ul>
-							<li> Name: <%= user.name %>.</li>
-							<li> Age: <%= user.age %> years.</li>
-							<li> Idiomas que sabe: <%= user.languages_learnt %>.</li>
-							<li> Idiomas que quiere aprender: <%= user.languages_without_learning %>.</li>
-						</ul>
-					</ul>	
+	<div class="row style_features">
+		<div class="col-sm-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"> Últimos usuarios registrados </h3>
 				</div>
-				<%end%>
-			</div>
-			<div class="col-sm-6 places">
-				<% @places.each do |place| %>
-				<div class="row">
-					<ul>
-						<li><%= place.name %></li>
-							<% if current_user || (current_place && current_place.id != place.id) %>
-							<%= link_to "Show place", place_path(place) %>
-							<% end %>
+				<div class="panel-body">
+					<% @users.each do |user| %>
+					<div class="row">
 						<ul>
-							<li> Ciudad: <%= place.city %>.</li>
-							<li> Dirección: <%= place.address %></li>
-							<li> Horario: <%= place.timetable %>.</li>
-						</ul>
-					</ul>
-				</div>
-				<%end%>	
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="row text-titles">
-			<div class="col-sm-6 border-titles">
-				<h3> Últimas meetings realizadas </h3>
-			</div>
-			<div class="col-sm-6 border-titles">
-				<h3> Próximas meetings </h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 meetings-done">
-			<% @meetings_done.each do |meeting| %>
-				<div class="row">
-				<% @users_total.each do |user| %>
-					<% if user.id == meeting.user_id %>
-					<% @places_total.each do |place| %>
-						<% if place.id == meeting.place_id %>
-						<ul>
-							<% if meeting.part_confirm != nil %> 
-								<% if current_user != user %> 
-									<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
-									<%= link_to "Show photos", user_meeting_path(user, meeting) %> 
-								<% elsif current_user == user %>
-									<li>Meeting of <%= user.languages_without_learning %> organized by you and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
-								<% elsif current_user.nil? %>
-									<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
-								<%end%>
-							<%end%>
-						</ul>	
-						<%end%>
-					<%end%>
-					<%end%>
-				<%end%>
-				</div>
-			<%end%>
-			</div>
-			<div class="col-sm-6 next-meetings">
-				<% @next_meetings.each do |meeting| %>
-				<div class="row">
-					<% @users_total.each do |user| %>
-						<% if user.id == meeting.user_id %>
-						<% @places_total.each do |place| %>
-							<% if place.id == meeting.place_id %>
+							<li><%= link_to (image_tag user.image_url.to_s, class: "image-welcome-user"), user_path(user) %></li>
 							<ul>
-								<% if current_user.nil? %>
-									<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %></li>
-								<% elsif meeting.part_confirm.nil? %>
-									<% if current_user == user %>
-										<li>Meeting of <%= user.languages_without_learning %> organized by you in <%= place.name %> at <%= meeting.date %></li>
-									<% elsif current_user != user %>
-									<% user_exist = meeting.participants.select{|user| user.id == current_user.id} %>
+								<li class="text-description"> Nombre: <%= user.name %>.</li>
+								<li class="text-description"> Edad: <%= user.age %> años.</li>
+								<li class="text-description"> Idiomas aprendidos: <%= user.languages_learnt %>.</li>
+								<li class="text-description"> Idioma que quiere aprender: <%= user.languages_without_learning %>.</li>
+							</ul>
+						</ul>	
+					</div>
+					<%end%>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"> Últimos establecimientos registrados </h3>
+				</div>
+				<div class="panel-body">
+					<% @places.each do |place| %>
+					<div class="row ">
+						<div class="panel panel-default">
+							<div class="row padall">
+								<div class="welcome-place">
+									<%= image_tag place.image_url.to_s, class: "image-welcome-place" %>
+									<li class="name-place"><%= place.name %></li>
+									<% if current_user || (current_place && current_place.id != place.id) %>
+									<%= link_to "Ver establecimiento", place_path(place) %>
+									<% end %>
+								</div>
+								<div class="welcome-description-place">
+									<ul>
+										<li> Ciudad: <%= place.city %>.</li>
+										<li> Dirección: <%= place.address %></li>
+										<li> Horario: <%= place.timetable %>.</li>	
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<%end%>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row style_features">
+		<div class="col-sm-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"> Próximas reuniones </h3>
+				</div>
+				<div class="panel-body">
+					<% @next_meetings.each do |meeting| %>
+					<div class="row">
+						<% @users_total.each do |user| %>
+							<% if user.id == meeting.user_id %>
+							<% @places_total.each do |place| %>
+								<% if place.id == meeting.place_id %>
+								<ul>
+									<% if current_user.nil? && meeting.part_confirm.empty? %>
 										<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %></li>
-										<% if user_exist.blank? %>
-											<div><%= link_to "ASSIST", user_meeting_path(user, meeting) %></div>
-										<% else %>
-											YA ESTAS APUNTADO
+									<% elsif meeting.part_confirm.nil? %>
+										<% if current_user == user %>
+											<li>Meeting of <%= user.languages_without_learning %> organized by you in <%= place.name %> at <%= meeting.date %></li>
+										<% elsif current_user != user %>
+										<% user_exist = meeting.participants.select{|user| user.id == current_user.id} %>
+											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %></li>
+											<% if user_exist.blank? %>
+												<div><%= link_to "ASSIST", user_meeting_path(user, meeting) %></div>
+											<% else %>
+												YA ESTAS APUNTADO
+											<% end %>
 										<% end %>
 									<% end %>
-								<% end %>
-							</ul>							
-							<%end%>
-						<%end%>	
-						<%end%>
-					<%end%>
-				</div>
-				<%end%>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="row text-titles">
-			<div class="col-sm-12 border-titles">
-				<h3> Meetings confirmadas </h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12 meetings-confirm">
-				<% @meetings_confirm.each do |meeting| %>
-				<div class="row list-confirm">
-					<% @users_total.each do |user| %>
-						<% if user.id == meeting.user_id %>
-						<% @places_total.each do |place| %>
-							<% if place.id == meeting.place_id %>
-							<ul>
-								<% if current_user.nil? %>
-									<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
-								<% else %>
-									<% if current_user == user %>
-										<li>Meeting of <%= user.languages_without_learning %> organized by you and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
-									<% elsif (current_user != user) && (current_user.name == meeting.part_confirm) %>
-										<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and you in <%= place.name %> at <%= meeting.date %></li>
-									<% elsif (current_user != user) && (current_user.name != meeting.part_confirm) %>
-										<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
-									<%end%>
+								</ul>							
 								<%end%>
-							</ul>						
+							<%end%>	
 							<%end%>
 						<%end%>	
-						<%end%>
+					</div>
 					<%end%>
 				</div>
-				<%end%>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"> Reuniones confirmadas por el usuario </h3>
+				</div>
+				<div class="panel-body">
+					<% @meetings_confirm.each do |meeting| %>
+					<div class="row">
+						<% @users_total.each do |user| %>
+							<% if user.id == meeting.user_id %>
+							<% @places_total.each do |place| %>
+								<% if place.id == meeting.place_id %>
+								<ul>
+									<% if current_user.nil? %>
+										<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+									<% else %>
+										<% if current_user == user %>
+											<li>Meeting of <%= user.languages_without_learning %> organized by you and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+										<% elsif (current_user != user) && (current_user.name == meeting.part_confirm) %>
+											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and you in <%= place.name %> at <%= meeting.date %></li>
+										<% elsif (current_user != user) && (current_user.name != meeting.part_confirm) %>
+											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+										<%end%>
+									<%end%>
+								</ul>						
+								<%end%>
+							<%end%>	
+							<%end%>
+						<%end%>
+					</div>
+					<%end%>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"> Reuniones ya realizadas </h3>
+				</div>
+				<div class="panel-body">
+					<% @meetings_done.each do |meeting| %>
+					<div class="row">
+						<% @users_total.each do |user| %>
+							<% if user.id == meeting.user_id %>
+							<% @places_total.each do |place| %>
+								<% if place.id == meeting.place_id %>
+								<ul>
+									<% if meeting.part_confirm != nil %> 
+										<% if current_user != user %> 
+											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+											<%= link_to "Show photos", user_meeting_path(user, meeting) %> 
+										<% elsif current_user == user %>
+											<li>Meeting of <%= user.languages_without_learning %> organized by you and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+										<% elsif current_user.nil? %>
+											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+										<%end%>
+									<%end%>
+								</ul>	
+								<%end%>
+							<%end%>
+							<%end%>
+						<%end%>
+					</div>
+					<%end%>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="row text-titles">
-			<div class="col-sm-12 border-titles">
-				<h3> Current offers in our places </h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12 meetings-confirm">
-				<% @places_total.each do |place| %>	
-				<div class="row list-confirm">
+</div>
+<div class="container">
+    <div class="page-header">
+        <h1>
+            Ofertas disponibles en nuestros establecimientos 
+        </h1>
+    </div>
+</div>
+<div class="container">
+	<div class="row style_features">
+		<div class="col-sm-12">
+			<div class="row">
+			<% @places_total.each do |place| %>	
+				<div class="col-md-6">
 					<ul>
-						<li><div><%= image_tag place.image_offer_url.to_s %></div>
-						<div><%= place.name %></div></li>
+						<div><%= image_tag place.image_offer_url.to_s, class: 'image-welcome-offer' %></div>
+						<li class="text-description"><%= place.name %></li>
 						<% if current_place.nil? || current_place.name != place.name %>
-							<div><%= link_to "Show Place", place_path(place) %></div>
+							<div class="text-description"><%= link_to "Show Place", place_path(place) %></div>
 						<% end %>
-					</ul>						
-				</div>
-				<%end%>
+					</ul>
+				</div>			
+			<%end%>
 			</div>
 		</div>
 	</div>

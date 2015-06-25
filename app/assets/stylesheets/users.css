@@ -1,6 +1,6 @@
 .image-big {
-	width:600px;
-	height:400px;
+	width:400px;
+	height:350px;
 }
 
 .navegator {
@@ -27,4 +27,84 @@
 	text-align: center;
 }
 
+.details {
+    min-height: 355px;
+    display: inline-block;
+}
 
+.well {
+	width: 100%;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #F5F5F5;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
+}
+
+h2 {
+    font-size: 30px;
+    margin-top: 20px;
+	margin-bottom: 10px;
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.1;
+	color: inherit;
+}
+
+.skillLine {
+    display: inline-block;
+    width: 100%;
+    padding: 3px 4px;
+}
+
+div.skill {
+    background: #F58723 none repeat scroll 0% 0%;
+    border-radius: 3px;
+    color: #FFF;
+    font-weight: bold;
+    padding: 3px 4px;
+    width: 70px;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.sui-rating {
+    display: inline-block;
+    position: relative;
+}
+
+.rating {
+    padding-left: 40px;
+}
+
+.sui-rating .sui-rating-range {
+    position: relative;
+    display: inline-block;
+    background: transparent url("http://www.shieldui.com/shared/components/latest/css/img/stars.png") repeat scroll 0% 0%;
+    height: 16px;
+    outline: 0px none;
+}
+
+.sui-rating .sui-rating-selected {
+    background-position: left -16px;
+    background-image: url("http://www.shieldui.com/shared/components/latest/css/img/stars.png");
+    position: absolute;
+	left: 0px;
+}
+
+.sui-rating .sui-rating-hover {
+	background-position: left -32px;
+	background-image: url("http://www.shieldui.com/shared/components/latest/css/img/stars.png");
+	position: absolute;
+	left: 0px;
+}
+
+.avg {
+    font-size: 50px;
+    padding-top: 20px;
+    margin-left: 50px;
+    color: #5CB85C;
+}

@@ -1,29 +1,59 @@
-<%= form_for @user, :html => { :multipart => true } do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<br>
-	<%= f.label :nick %>
-	<%= f.text_field :nick %>
-	<br>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-	<br>
-	<%= f.label :city %>
-	<%= f.text_field :city %>
-	<br>
-	<%= f.label :age %>
-	<%= f.text_field :age %>
-	<br>
-	<%= f.label :languages_learnt %>
-	<%= f.text_field :languages_learnt %>
-	<br>
-	<%= f.label :languages_without_learning %>
-	<%= f.text_field :languages_without_learning %>
-	<br>
-	<%= f.label :image %>
-	<%= f.file_field :image %>
-	<br>
-	<%= f.submit 'Update' %>
-<% end %>
-
-
+<div class="container">
+    <div class="page-header">
+        <div class="col-md-12">
+            <h1>
+            	Modifica tus datos
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<form class="col-md-3"></form>
+	<div class="col-md-6">
+	<%= form_for @user, :html => { :multipart => true } do |f| %>
+	    <div class="form-group">
+	    	<div><strong> Nombre:</strong></div>
+	    	<%= f.text_field :name, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Nick:</strong></div>
+	    	<%= f.text_field :nick, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Email:</strong></div>
+	    	<%= f.email_field :email, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Ciudad:</strong></div>
+	    	<%= f.text_field :city, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Edad:</strong></div>
+	    	<%= f.text_field :age, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Profesión:</strong></div>
+	    	<%= f.text_field :job, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Hobbies:</strong></div>
+	    	<%= f.text_field :hobbies, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Idiomas aprendidos:</strong></div>
+	    	<%= f.text_field :languages_learnt, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Idiomas que quiero practicar:</strong></div>
+	    	<%= f.text_field :languages_without_learning, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.file_field :image %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.submit '¡Actualizar los datos!', class: "btn btn-primary btn-lg btn-block" %>
+	    </div>
+	</div>
+	<% end %>
+	<form class="col-md-3"></form>
+</div>

@@ -1,19 +1,49 @@
 <%= flash_message %>
-<h1>Organize new meeting!</h1>
-
-<%= form_for [@user, @meeting], :html => { :multipart => true } do |f| %>
-	<% if @meeting.errors.any? %>
-	<ul>
-		<% @meeting.errors.full_messages.each do |error_msg| %>
-		<li><%= error_msg %></li>
+<div class="container">
+	<div class="row style_features">
+		<div class="col-sm-12">
+			<div class="row">
+			<% @places_total.each do |place| %>	
+				<div class="col-md-3">
+					<ul>
+						<div><%= link_to (image_tag place.image_url.to_s, class: 'image-meeting-place'), place_path(place) %></div>
+						<li class="text-description"><%= place.name %></li>
+					</ul>
+				</div>			
+			<%end%>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+    <div class="page-header">
+        <div class="col-md-12">
+            <h1>
+            	¡Crear una nueva reunión!
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<form class="col-md-2"></form>
+	<div class="col-md-8">
+	<%= form_for [@user, @meeting], :html => { :multipart => true } do |f| %>
+		<% if @meeting.errors.any? %>
+		<ul>
+			<% @meeting.errors.full_messages.each do |error_msg| %>
+			<li><%= error_msg %></li>
+			<% end %>
+		</ul>
 		<% end %>
-	</ul>
+
+		<%= f.collection_select( :place_id, Place.order('name DESC'), :id, :name, {:prompt => 'Escoge un establecimiento'}, class: "form-control input-lg") %>
+		<div class="form-group">
+			<%= f.datetime_select :date, {}, {:class => "form-control input-lg"} %>
+		</div>
+    	<div class="form-group">
+			<%= f.submit '¡Organizar!', class: "btn btn-primary btn-lg btn-block" %>
+    	</div>
+    </div>
 	<% end %>
-
-	<%= f.collection_select( :place_id, Place.order('name DESC'), :id, :name, include_blank: true) %>
-	<br>
-	<%= f.datetime_select :date %>
-	<br>
-
-	<%= f.submit 'Organize it!', class: "btn-submit" %>
-<% end %>
+	<form class="col-md-2"></form>
+</div>
