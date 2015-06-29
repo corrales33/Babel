@@ -20,3 +20,110 @@
     line-height: 1.33333;
     border-radius: 6px;
 }
+
+.image-offer-profile {
+    height: 120px;
+    width: 250px;
+}
+
+.image-big-place {
+    width:550px;
+    height:405px;
+}
+
+.btn-place-offer {
+    width:220px;
+    margin-left: 15px;
+    padding: 6px 12px;
+    font-family: inherit;
+    text-transform: none;
+    overflow: visible;
+    font-size: 18px;
+    line-height: 1.33333;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 0px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    border: 1px solid transparent;
+    background-image: linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%);
+    background-repeat: repeat-x;
+    border-color: #28A4C9;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.15) inset, 0px 1px 1px rgba(0, 0, 0, 0.075);
+    border-color: #46B8DA;
+    color: #FFF;
+    background-color: #5BC0DE;
+}
+
+.btn-place-edit { 
+    width:220px;
+    margin-left: 45px;
+    padding: 6px 12px;
+    font-family: inherit;
+    text-transform: none;
+    overflow: visible;
+    font-size: 18px;
+    line-height: 1.33333;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 0px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    border: 1px solid transparent;
+    border-color: #245580;
+    color: #FFF;
+    background-color: #265A88;
+}
+
+.btn-place-opinion { 
+    padding: 6px 12px;
+    font-family: inherit;
+    text-transform: none;
+    overflow: visible;
+    font-size: 18px;
+    line-height: 1.33333;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 0px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    border: 1px solid transparent;
+    border-color: #3E8F3E;
+    color: #FFF;
+    background-color: #419641;
+}
+
+.btn-place-meeting { 
+    padding: 6px 12px;
+    font-family: inherit;
+    text-transform: none;
+    overflow: visible;
+    font-size: 18px;
+    line-height: 1.33333;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 0px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    border: 1px solid transparent;
+    border-color: #E38D13;
+    color: #FFF;
+    background-color: #EB9316;
+}

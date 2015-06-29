@@ -46,7 +46,7 @@
 									<%= image_tag place.image_url.to_s, class: "image-welcome-place" %>
 									<li class="name-place"><%= place.name %></li>
 									<% if current_user || (current_place && current_place.id != place.id) %>
-									<%= link_to "Ver establecimiento", place_path(place) %>
+									<%= button_to "Ver establecimiento", place_path(place), class: "btn-profile btn-lg btn-info", :method => :get %>
 									<% end %>
 								</div>
 								<div class="welcome-description-place">
@@ -80,18 +80,18 @@
 							<% @places_total.each do |place| %>
 								<% if place.id == meeting.place_id %>
 								<ul>
-									<% if current_user.nil? && meeting.part_confirm.empty? %>
-										<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %></li>
+									<% if current_user.nil? && meeting.part_confirm.nil? %>
+										<li>Reunión de <%= user.languages_without_learning %> organizada por <%= user.name %> con fecha <%= meeting.date %> en <%= place.name %></li>
 									<% elsif meeting.part_confirm.nil? %>
 										<% if current_user == user %>
-											<li>Meeting of <%= user.languages_without_learning %> organized by you in <%= place.name %> at <%= meeting.date %></li>
+											<li>Reunión de <%= user.languages_without_learning %> organizada por ti con fecha <%= meeting.date %> en <%= place.name %></li>
 										<% elsif current_user != user %>
 										<% user_exist = meeting.participants.select{|user| user.id == current_user.id} %>
-											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> in <%= place.name %> at <%= meeting.date %></li>
+											<li>Reunión de <%= user.languages_without_learning %> organizada por <%= user.name %> con fecha <%= meeting.date %> en <%= place.name %></li>
 											<% if user_exist.blank? %>
-												<div><%= link_to "ASSIST", user_meeting_path(user, meeting) %></div>
+												<div><%= button_to "APUNTARSE", user_meeting_path(user, meeting), class: "btn-profile btn-lg btn-success", :method => :get %></div>
 											<% else %>
-												YA ESTAS APUNTADO
+												<span class="label label-danger">YA ESTAS APUNTADO</span>
 											<% end %>
 										<% end %>
 									<% end %>
@@ -119,14 +119,14 @@
 								<% if place.id == meeting.place_id %>
 								<ul>
 									<% if current_user.nil? %>
-										<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+										<li>Reunión de <%= user.languages_without_learning %> organizada por <%= user.name %> y <%= meeting.part_confirm %> con fecha <%= meeting.date %> en <%= place.name %></li>
 									<% else %>
 										<% if current_user == user %>
-											<li>Meeting of <%= user.languages_without_learning %> organized by you and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+											<li>Reunión de <%= user.languages_without_learning %> organizada por ti y <%= meeting.part_confirm %> con fecha <%= meeting.date %> en <%= place.name %></li>
 										<% elsif (current_user != user) && (current_user.name == meeting.part_confirm) %>
-											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and you in <%= place.name %> at <%= meeting.date %></li>
+											<li>Reunión de <%= user.languages_without_learning %> organizada por <%= user.name %> y tú, con fecha <%= meeting.date %> en <%= place.name %></li>
 										<% elsif (current_user != user) && (current_user.name != meeting.part_confirm) %>
-											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+											<li>Reunión de <%= user.languages_without_learning %> organizada por <%= user.name %> y <%= meeting.part_confirm %> con fecha <%= meeting.date %> en <%= place.name %></li>
 										<%end%>
 									<%end%>
 								</ul>						
@@ -154,12 +154,12 @@
 								<ul>
 									<% if meeting.part_confirm != nil %> 
 										<% if current_user != user %> 
-											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
-											<%= link_to "Show photos", user_meeting_path(user, meeting) %> 
+											<li>Reunión de <%= user.languages_without_learning %> organizada por <%= user.name %> y <%= meeting.part_confirm %> con fecha <%= meeting.date %> en <%= place.name %></li>
+											<%= button_to "Ver fotografía", user_meeting_path(user, meeting), class: "btn-profile btn-lg btn-info", :method => :get  %> 
 										<% elsif current_user == user %>
-											<li>Meeting of <%= user.languages_without_learning %> organized by you and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+											<li>Reunión de <%= user.languages_without_learning %> organizada por ti y <%= meeting.part_confirm %> con fecha <%= meeting.date %> en <%= place.name %></li>
 										<% elsif current_user.nil? %>
-											<li>Meeting of <%= user.languages_without_learning %> organized by <%= user.name %> and <%= meeting.part_confirm %> in <%= place.name %> at <%= meeting.date %></li>
+											<li>Reunión de <%= user.languages_without_learning %> organizada por <%= user.name %> y <%= meeting.part_confirm %> con fecha <%= meeting.date %> en <%= place.name %></li>
 										<%end%>
 									<%end%>
 								</ul>	
@@ -191,7 +191,7 @@
 						<div><%= image_tag place.image_offer_url.to_s, class: 'image-welcome-offer' %></div>
 						<li class="text-description"><%= place.name %></li>
 						<% if current_place.nil? || current_place.name != place.name %>
-							<div class="text-description"><%= link_to "Show Place", place_path(place) %></div>
+							<div class="text-description"><%= button_to "Ver establecimiento", place_path(place), class: "btn-profile btn-lg btn-info", :method => :get %></div>
 						<% end %>
 					</ul>
 				</div>			

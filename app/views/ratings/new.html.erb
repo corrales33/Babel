@@ -1,10 +1,29 @@
-<%= form_for [@user, @rating], :html => { :multipart => true, :method => "post" } do |f| %>
-	User: <%= @user.name %>
-	<br>
-	<%= f.label :score %>
-	<%= f.text_field :score %>
-	<br>
-	<% f.text_field :participants_in_rating, :value => current_user.id %>
+<div class="container">
+    <div class="page-header">
+        <div class="col-md-12">
+            <h1>
+            	¡Puntúa al usuario!
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<form class="col-md-4"></form>
+	<div class="col-md-4">
+	<%= form_for [@user, @rating], :html => { :multipart => true, :method => "post" } do |f| %>
+		<div>
+			<%= image_tag @user.image_url.to_s, class: "img-circle img-thumbnail" %>
+			<h2 class="text-description"> <%= @user.name %> </h2>
+		</div>
 
-	<%= f.submit 'Save rating', class: "btn-submit" %>
-<% end %>
+		<div class="form-group">
+	    	<%= f.text_field :score, class: "form-control input-lg", :placeholder => 'Puntuación' %>
+	    </div>
+			<% f.text_field :participants_in_rating, :value => current_user.id %>
+	    <div class="form-group">
+	    	<%= f.submit '¡Guardar puntuación!', class: "btn btn-primary btn-lg btn-block" %>
+	    </div>
+	</div>
+	<% end %>
+	<form class="col-md-4"></form>
+</div>

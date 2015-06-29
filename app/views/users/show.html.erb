@@ -8,18 +8,18 @@
                 <div class="col-sm-12">
                     <div class="col-xs-12 col-sm-4">
                         <h2 style="text-decoration:underline;"><%= @user.name %></h2>
-                        <p><strong> Nick:</strong><%= @user.nick %> </p>
-                        <p><strong> Edad:</strong><%= @user.age %> </p>
-                        <p><strong> Email:</strong><%= @user.email %> </p>
-                        <p><strong> Ciudad:</strong><%= @user.city %> </p>
-                        <p><strong> Profesión:</strong><%= @user.job %> </p>
-                        <p><strong> Hobbies:</strong><%= @user.hobbies %> </p>
-                        <p><strong> Idiomas aprendidos:</strong><%= @user.languages_learnt %> </p>
-                        <p><strong> Idiomas que quiere practicar:</strong><%= @user.languages_without_learning %> </p>
+                        <p><strong> Nick:</strong> <%= @user.nick %> </p>
+                        <p><strong> Edad:</strong> <%= @user.age %> </p>
+                        <p><strong> Email:</strong> <%= @user.email %> </p>
+                        <p><strong> Ciudad:</strong> <%= @user.city %> </p>
+                        <p><strong> Profesión:</strong> <%= @user.job %> </p>
+                        <p><strong> Hobbies:</strong> <%= @user.hobbies %> </p>
+                        <p><strong> Idiomas aprendidos:</strong> <%= @user.languages_learnt %> </p>
+                        <p><strong> Idiomas que quiere practicar:</strong> <%= @user.languages_without_learning %> </p>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-lg-1">
                 		<div>
-							<%= image_tag @user.image_url.to_s, :class => "image-big" %>
+							<%= image_tag @user.image_url.to_s, :class => "image-big-user" %>
 						</div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
 								<% if user_is_in_rating.blank? %>
 									<div><%= button_to 'Dar puntuación al usuario', new_user_rating_path(@user), class: "btn btn-lg btn-success", :method => :get %></div>
 								<% else %>
-									<div> YA HAS VOTADO A ESTE USUARIO </div>
+									<span class="label label-danger">YA HAS VOTADO A ESTE USUARIO</span>
 								<% end %>	
 							<% end %>
 			    		</div>

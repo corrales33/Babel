@@ -1,18 +1,35 @@
-<%= form_for @place, :html => { :multipart => true } do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<br>
-	<%= f.label :city %>
-	<%= f.text_field :city %>
-	<br>
-	<%= f.label :address %>
-	<%= f.text_field :address %>
-	<br>
-	<%= f.label :offers %>
-	<%= f.text_field :offers %>
-	<br>
-	<%= f.label :image %>
-	<%= f.file_field :image %>
-	<br>
-	<%= f.submit 'Update' %>
-<% end %>
+<div class="container">
+    <div class="page-header">
+        <div class="col-md-12">
+            <h1>
+            	Modifica tus datos
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<form class="col-md-3"></form>
+	<div class="col-md-6">
+	<%= form_for @place, :html => { :multipart => true } do |f| %>
+	    <div class="form-group">
+	    	<div><strong> Nombre:</strong></div>
+	    	<%= f.text_field :name, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Ciudad:</strong></div>
+	    	<%= f.text_field :city, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<div><strong> Dirección:</strong></div>
+	    	<%= f.text_field :address, class: "form-control input-lg" %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.file_field :image %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.submit '¡Actualizar los datos!', class: "btn btn-primary btn-lg btn-block" %>
+	    </div>
+	</div>
+	<% end %>
+	<form class="col-md-3"></form>
+</div>
