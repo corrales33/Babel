@@ -1,3 +1,99 @@
 .user-id {
 	visibility: hidden;
 }
+
+.product_main {
+    width: 100%;
+    float: left;
+}
+
+.inner {
+    overflow: hidden;
+    padding: 18px;
+    margin: 0px 0px 10px;
+    border-radius: 6px;
+    background: #EEE url("//d85wutc1n854v.cloudfront.net/live/imgs/darkgrain.png") repeat scroll 0% 0%;
+}
+
+.item_comments {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.item_comment {
+    width: 618px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.item_comment_user {
+    width: 100px;
+    float: left;
+}
+
+.image-opinion {
+	width: 100px;
+	height: 100px;
+}
+
+.item_comment_body {
+    width: 470px;
+    padding: 15px;
+    background-color: #FFF;
+    min-height: 70px;
+    border-radius: 3px;
+    float: right;
+}
+
+.item_comment_body_head {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.user {
+    width: auto;
+    float: left;
+    font-size: 16px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.item_comment_body_text {
+    font-size: 100%;
+    word-wrap: break-word;
+}
+
+.image {
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 930px;
+    z-index: 2;
+    width: 75px;
+    height: 75px;
+    border: 7px solid #FFF;
+    line-height: 88px;
+    border-radius: 50%;
+    background: #63B76C none repeat scroll 0% 0%;
+    vertical-align: middle;
+}
+
+.btn-lg {
+	padding: 10px 16px;
+    font-size: 38px;
+    line-height: 1.33;
+    border-radius: 6px;
+}
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.opinions-users {
+	margin-top: 40px;
+}

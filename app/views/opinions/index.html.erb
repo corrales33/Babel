@@ -1,13 +1,60 @@
-<h2> All opinions </h2>
-	<ul>
-		<% @opinions.each do |opinion| %>
-			<% @users_total.each do |user| %>
-				<% if (user.id == opinion.user_id) && (@place.id == opinion.place_id) %>
-					<li><%= image_tag user.image_url.to_s %> <%= user.name %> published at <%= opinion.created_at %>: <div><%= opinion.comment %></div></li>
-				<% end %>
-			<% end %>
+<div class="container">
+    <div class="page-header">
+        <div class="col-md-12">
+            <h1>
+            	Todas las opiniones
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<div class="image">
+		<% if current_user %>
+			<a href=""><% link_to 'Nueva opinion', new_place_opinion_path(@place) %><span class="glyphicon glyphicon-edit btn-lg white"></span></a>
 		<% end %>
-	</ul>
+	</div>
+	<div class="container opinions-users">
+	    <div class="row">
+	    	<div class="col-sm-2">
+	    	</div>
+	        <div class="col-sm-8">
+	            <div class="product_main">
+	            	<div class="product">
+	            		<div class="inner">
+	            			<div class="item_comments">
+	            				<ul>
+									<% @opinions.each do |opinion| %>
+										<% @users_total.each do |user| %>
+											<% if (user.id == opinion.user_id) && (@place.id == opinion.place_id) %>
+					            				<div class="item_comment">
+					            					<div class="item_comment_user">
+					            						<li><%= image_tag user.image_url.to_s, class: "image-opinion" %>
+					            					</div>
+					            					<div class="item_comment_body">
+					            						<div class="item_comment_body_head">
+					            							<div class="user">
+					            								<strong><%= link_to user.name, user_path(user) %></strong> (<%= user.nick %>) publicó el día <%= opinion.created_at %>:
+					            							</div>
+					            						</div>
+					            						<div class="item_comment_body_text">
+					            							<div><%= opinion.comment %></div></li>
+					            						</div>
+					            					</div>
+					            				</div>
+					            			<% end %>
+					            		<% end %>
+					            	<% end %>
+					            </ul>			
+	            			</div>
+	            		</div>
+	            	</div>
+	            </div>
+	        </div>
+	        <div class="col-sm-2">
+	    	</div>
+	    </div>
+	</div>
+</div>
 <div><%= link_to 'Back', place_path(@place) %></div>
 <% if current_user %>
 	<div><%= link_to 'Nueva opinion', new_place_opinion_path(@place) %></div>
