@@ -22,8 +22,6 @@
 								<ul>
 									<% if meeting.part_confirm.nil? %>
 										<li> Reunión de <%= @user.languages_without_learning %> con fecha <%= meeting.date %> en <%= place.name %></li>
-									<% end %>
-								</ul>
 								<div class="row">
 									<div class="col-sm-6">
 										<%= button_to 'Ver participantes', user_meeting_path(@user, meeting), class: "btn-meetings-part", :method => :get %>
@@ -32,6 +30,8 @@
 								    	<%= button_to 'Eliminar la reunión', user_meeting_path(@user, meeting), class: "btn-profile btn-lg btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
 									</div>
 								</div>
+									<% end %>
+								</ul>
 							<%end%>
 						<%end%>
 						</div>

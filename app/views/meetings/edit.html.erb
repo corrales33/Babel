@@ -1,7 +1,24 @@
 <%= flash_message %>
-<%= form_for [@user, @meeting], :url => url_for(:controller => 'meetings', :action => 'add_photo'), :html => { :multipart => true, :method => "post" } do |f| %>
-
-	<%= f.file_field :photo %>
-	<br>
-	<%= f.submit 'Save image', class: "btn-submit" %>
-<% end %>
+<div class="container">
+    <div class="page-header">
+        <div class="col-md-12">
+            <h1>
+            	Añade tu mejor foto del encuentro :)
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<form class="col-md-3"></form>
+	<div class="col-md-6">
+	<%= form_for [@user, @meeting], :url => url_for(:controller => 'meetings', :action => 'add_photo'), :html => { :multipart => true, :method => "post" } do |f| %>
+	    <div class="form-group">
+	    	<%= f.file_field :photo %>
+	    </div>
+	    <div class="form-group">
+	    	<%= f.submit '¡Guardar foto!', class: "btn btn-primary btn-lg btn-block" %>
+	    </div>
+	</div>
+	<% end %>
+	<form class="col-md-3"></form>
+</div>

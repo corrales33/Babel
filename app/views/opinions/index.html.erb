@@ -10,7 +10,7 @@
 <div class="container">
 	<div class="image">
 		<% if current_user %>
-			<a href=""><% link_to 'Nueva opinion', new_place_opinion_path(@place) %><span class="glyphicon glyphicon-edit btn-lg white"></span></a>
+			<a href="<%= new_place_opinion_path(@place) %>"><span class="glyphicon glyphicon-edit btn-lg white"></span></a>
 		<% end %>
 	</div>
 	<div class="container opinions-users">

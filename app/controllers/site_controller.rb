@@ -14,5 +14,5 @@ class SiteController < ApplicationController
 		@users = User.all
 		@places = Place.all
 	end
-
+	
 end

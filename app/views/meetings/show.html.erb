@@ -1,45 +1,147 @@
-<% if current_user %>
-	<% if current_user.id == @meeting.user_id %>
-		<% if @meeting.participants.empty? %>
-			NO HAY PARTICIPANTES AÚN
-			<div><%= link_to 'Back', user_meetings_path(@user) %></div>
-		<% else %>
-			<%= form_for [current_user, @meeting], :url => url_for(:controller => 'meetings', :action => 'update_parameter'), :html => { :multipart => true, :method => "post" } do |f| %>
-			Meeting of <%= @user.languages_without_learning %> in <% @places_total.each do |place| %>
-					<% if place.id == @meeting.place_id %>
-						<%= place.name %>
+<div class="container">
+	<% if current_user %>
+		<% if current_user.id == @meeting.user_id %>
+			<% if @meeting.participants.empty? %>
+				<form class="col-md-3"></form>
+				<div class="col-md-6">
+					<div>
+						<img class="img-circle img-thumbnail-sad" src="http://cdn.flaticon.com/svg/55/55844.svg">
+					</div>
+					<h2>AÚN NO SE HA APUNTADO NADIE</h2>
+					<div><%= button_to 'Atrás', user_meetings_path(@user), class: "btn btn-lg btn-success", :method => :get %></div>
+				</div>
+				<form class="col-md-3"></form>
+			<% else %>
+				<div class="container">
+				    <div class="page-header">
+				        <div class="col-md-12">
+				            <h1>
+				            	¡Tu reunión!
+				            </h1>
+				        </div>
+				    </div>
+				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="panel panel-default">
+					<%= form_for [current_user, @meeting], :url => url_for(:controller => 'meetings', :action => 'update_parameter'), :html => { :multipart => true, :method => "post" } do |f| %>
+						<div class="panel-heading">
+							<h3 class="panel-title">Reunión de <%= @user.languages_without_learning %> con fecha <%= @meeting.date %> en <% @places_total.each do |place| %>  
+									<% if place.id == @meeting.place_id %>
+										<%= place.name %>
+									<% end %>
+								<% end %> con:
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+							<% for i in 0..@meeting.participants.length-1 %>
+								<div class="col-md-4">
+									<ul>
+										<li>
+											<div>
+												<%= image_tag @meeting.participants[i].image_url.to_s, class: "img-circle img-thumbnail" %>
+											</div>
+											<div>
+												Nombre: <%= @meeting.participants[i].name %>
+											</div>
+											<div>
+												Nick: <%= @meeting.participants[i].nick %>
+											</div>
+											<%= link_to "Ver usuario", user_path(@meeting.participants[i]), class: "btn btn-small btn-success" %>
+										</li>
+									</ul>
+								</div>
+							<% end %>
+							</div>
+							<div class="row">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">Ellos son tus participantes, escoge a uno de ellos ;)</h3>
+									</div>
+									<div class="panel-body">
+										<%= collection_select(:meeting, :part_confirm, @meeting.participants, :name, :name, {:prompt => 'Escoge un usuario'}, class: "form-control input-lg") %>
+										<div class="form-group">
+											<%= f.submit '¡Confirmar!', class: "btn btn-primary btn-lg btn-block" %>
+								    	</div>
+								    	<div><%= link_to 'Back', user_meetings_path(@user) %></div>
+									</div>
+								</div>
+							</div>
+						</div>
 					<% end %>
-				<% end %> at <%= @meeting.date %> with <% for i in 0..@meeting.participants.length-1 %>
-				<ul>
-					<li> <div>Nombre: <%= @meeting.participants[i].name %></div> <div>Nick: <%= @meeting.participants[i].nick %></div> <%= link_to 'Show user', user_path(@meeting.participants[i]) %> 
-					</li>
-				</ul>
-				<% end %>
-				They are your participants, choose one of them!! <%= collection_select(:meeting, :part_confirm, @meeting.participants, :name, :name) %>
-				<%= f.submit 'CONFIRM', class: "btn-submit" %>
-				<div><%= link_to 'Back', user_meetings_path(@user) %></div>
+				</div>
+				<div class="col-md-2"></div>
 			<% end %>
-		<% end %>	
-	<% else %>
-		<%= form_for [current_user, @meeting], :html => { :multipart => true, :method => "post" } do |f| %>
-
-		Meeting of <%= @user.languages_without_learning %> organized by <%= @user.name %> in <% @places_total.each do |place| %>
-				<% if place.id == @meeting.place_id %>
-					<%= place.name %>
-				<% end %>
-			<% end %> at <%= @meeting.date %>
-
-			<% f.text_field :participants, :value => current_user %>
-			<br>
-			<%= f.submit 'Assist!', class: "btn-submit" %>
+		<% elsif (current_user.id != @meeting.user_id) && @meeting.participants.empty? %>
+			<form class="col-md-2"></form>
+			<div class="col-md-8">
+			<%= form_for [current_user, @meeting], :html => { :multipart => true, :method => "post" } do |f| %>
+			    <div class="panel panel-default">
+			    	<div class="panel-heading">
+			    		<h3 class="panel-title"> Reunión </h3>
+			    	</div>
+			    	<div class="panel-body">
+			    		Reunión de <%= @user.languages_without_learning %> organizada por <%= @user.name %> con fecha <%= @meeting.date %> en  <% @places_total.each do |place| %>
+								<% if place.id == @meeting.place_id %>
+									<%= place.name %>
+								<% end %>
+							<% end %>.
+					    <div class="form-group">
+					    	<% f.text_field :participants, :value => current_user %>
+					    </div>
+						<div class="form-group">
+					    	<%= f.submit '¡Apuntarse!', class: "btn btn-primary btn-lg btn-block" %>
+					    </div>
+			    	</div>
+			    </div>			    
+			<% end %>
+			</div>
+			<form class="col-md-2"></form>
+		<% else %>
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"> Reuniones organizadas </h3>
+					</div>
+					<div class="panel-body">
+						<ul>
+							<li>Reunión de <%= @user.languages_without_learning %> organizada por <%= @user.name %> y <%= @meeting.part_confirm %> con fecha <%= @meeting.date %> en   <% @places_total.each do |place| %>
+																							<% if place.id == @meeting.place_id %>
+																								<%= place.name %>.
+																							<% end %>
+																						<% end %>
+							</li>
+							<div><%= image_tag @meeting.image_url.to_s, :class => "image-container" %></div>
+						</ul>
+						<div><%= link_to 'Welcome page', root_path %></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
 		<% end %>
+	<% else %>
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"> Reuniones organizadas </h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						<li>Reunión de <%= @user.languages_without_learning %> organizada por <%= @user.name %> y <%= @meeting.part_confirm %> con fecha <%= @meeting.date %> en   <% @places_total.each do |place| %>
+																						<% if place.id == @meeting.place_id %>
+																							<%= place.name %>.
+																						<% end %>
+																					<% end %>
+						</li>
+						<div><%= image_tag @meeting.image_url.to_s, :class => "image-container" %></div>
+					</ul>
+					<div><%= link_to 'Welcome page', root_path %></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3"></div>
 	<% end %>
-<% else %>
-	<li>Meeting of <%= @user.languages_without_learning %> organized by <%= @user.name %> and <%= @meeting.part_confirm %> in <% @places_total.each do |place| %>
-				<% if place.id == @meeting.place_id %>
-					<%= place.name %>
-				<% end %>
-			<% end %> at <%= @meeting.date %></li>
-	<div><%= image_tag @meeting.image_url.to_s, :class => "image-container" %></div>
-	<div><%= link_to 'Welcome page', root_path %></div>
-<% end %>
+</div>

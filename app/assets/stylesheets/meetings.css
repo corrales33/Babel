@@ -52,3 +52,19 @@
     color: #FFF;
     background-color: #F0AD4E;
 }
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.img-thumbnail-sad {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857;
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out 0s;
+}

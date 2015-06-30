@@ -3,7 +3,7 @@ class Place < ActiveRecord::Base
 	has_many :opinions
 	attr_accessor :image, :image_offer
 	mount_uploader :image, ImageUploader
-	mount_uploader :image_offer, ImageUploader
+	mount_uploader :image_offer, ImageOfferUploader
 	has_secure_password
 
 	def place_registered? 
