@@ -11,24 +11,30 @@
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
     		<div class="container">
-        		<div class="navbar-header"></div>
+        		<div class="navbar-header">
+        			<a class="navbar-brand" href="http://localhost:3000"><span class="glyphicon glyphicon-home"></span> Home</a>
+        		</div>
         		<div id="navbar" class="navbar-collapse collapse">
-	        		<ul class="nav navbar-nav">
+        			<ul class="nav navbar-nav">
+			           	<li><a href="">¿Quiénes somos?</a></li>
+			           	<li><a href="">Contactar</a></li>
+			           	<li><a href="">Ayúdanos a mejorar</a></li>
+			        </ul> 
+			        <img src="/babel.png" class="image-nav">
+	        		<ul class="nav navbar-nav navbar-right">
 	        			<% if current_user %>
-						    <li><a href="#"> Bienvenid@ <%= current_user.name %> </a></li>
-						    <li><a href="#"> <%= link_to "Log out", logout_user_path, method: "delete" %> </a></li>
-						    <li><a href="#"> <%= link_to "Mi perfil", user_path(current_user) %> </a></li>
+						    <li><%= link_to("Bienvenido "+current_user.name, user_path(current_user)) %></li>
+						    <li><%= link_to "Log out", logout_user_path, method: "delete" %></li>
 						<% elsif current_place %>
-							<li><a href="#"> Bienvenid@ <%= current_place.name %> </a></li>
-						    <li><a href="#"> <%= link_to "Log out", logout_place_path, method: "delete" %> </a></li>
-						    <li><a href="#"> <%= link_to "Mi perfil", place_path(current_place) %> </a></li>
+							<li><%= link_to("Bienvenido "+current_place.name, place_path(current_place)) %></li>
+						    <li><%= link_to "Log out", logout_place_path, method: "delete" %></li>
 						<% else %>
-							<li> <%= link_to "Crear una cuenta", 'signup' %> </li>
+							<li><%= link_to "Crear una cuenta", signup_path %> </li>
 				    		<li class="dropdown"> 
 				    			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> Log in <span class="caret"></span></a>
 				    			<ul class="dropdown-menu" role="menu">
-									<li><a href="#"><%= link_to "Login User", 'login_user' %></a></li>  
-									<li><a href="#"><%= link_to "Login Place", 'login_place' %></a></li>  
+									<li><%= link_to "Login Usuario", 'login_user' %></li>  
+									<li><%= link_to "Login Establecimiento", 'login_place' %></li>  
 					          	</ul>	
 				    		</li>
 				    	<% end %>

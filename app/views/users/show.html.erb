@@ -7,7 +7,7 @@
             <div class="well details">
                 <div class="col-sm-12">
                     <div class="col-xs-12 col-sm-4">
-                        <h2 style="text-decoration:underline;"><%= @user.name %></h2>
+                        <h2 class="text-name-profile"><%= @user.name %></h2>
                         <p><strong> Nick:</strong> <%= @user.nick %> </p>
                         <p><strong> Edad:</strong> <%= @user.age %> </p>
                         <p><strong> Email:</strong> <%= @user.email %> </p>
@@ -25,15 +25,15 @@
                 </div>
                 <div class="row">
 			    	<div class="col-sm-12">
-			    		<span style="font-size:50px; padding-top: 20px;"> Puntuación media:</span>
+			    		<span style="font-size:50px; padding-top: 20px; margin-left: 28px;"> Puntuación media:</span>
 			    		<span class="avg"><% @user.calculate_average %> <%= @user.average_user %> </span>
 			    		<div>
 				    		<% if (current_user != @user) && @user.participants_in_rating.empty? %>
-								<div><%= button_to 'Dar puntuación al usuario', new_user_rating_path(@user), class: "btn btn-lg btn-success", :method => :get %></div>
+								<div><%= button_to 'Dar puntuación al usuario', new_user_rating_path(@user), class: "btn btn-lg btn-success btn-opinion", :method => :get %></div>
 							<% elsif (current_user != @user) && (false == @user.participants_in_rating.empty?) %>
 								<% user_is_in_rating = @user.participants_in_rating.select{|id| id == current_user.id} %>
 								<% if user_is_in_rating.blank? %>
-									<div><%= button_to 'Dar puntuación al usuario', new_user_rating_path(@user), class: "btn btn-lg btn-success", :method => :get %></div>
+									<div><%= button_to 'Dar puntuación al usuario', new_user_rating_path(@user), class: "btn btn-lg btn-success btn-opinion", :method => :get %></div>
 								<% else %>
 									<span class="label label-danger">YA HAS VOTADO A ESTE USUARIO</span>
 								<% end %>	
@@ -55,17 +55,17 @@
         	<div class="row">
         		<div class="col-sm-4">
 		        	<% if current_user && current_user.email == @user.email %>
-		        	<span><%= button_to 'Modificar datos', edit_user_path(@user), class: "btn-profile btn-lg btn-primary", :method => :get %></span>
+		        	<span><%= button_to 'Modificar datos', edit_user_path(@user), class: "btn-profile btn-lg btn-primary btn-edit-user", :method => :get %></span>
 					<% end %>
 				</div>
 				<div class="col-sm-4">
 					<% if current_user && current_user.email == @user.email %>
-					<span><%= button_to 'Organizar reunión', new_user_meeting_path(@user), class: "btn-profile btn-lg btn-success", :method => :get %></span>
+					<span><%= button_to 'Organizar reunión', new_user_meeting_path(@user), class: "btn-profile btn-lg btn-success btn-new-meeting", :method => :get %></span>
 					<% end %>
 				</div>
 				<div class="col-sm-4">
 					<% if current_user && current_user.email == @user.email %>
-					<span><%= button_to 'Tus reuniones', user_meetings_path(@user), class: "btn-profile btn-lg btn-warning", :method => :get %></span>
+					<span><%= button_to 'Tus reuniones', user_meetings_path(@user), class: "btn-profile btn-lg btn-warning btn-own-meeting", :method => :get %></span>
 					<% end %>
 				</div>
 			</div>

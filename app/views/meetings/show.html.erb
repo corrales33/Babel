@@ -1,3 +1,4 @@
+<%= flash_message %>
 <div class="container">
 	<% if current_user %>
 		<% if current_user.id == @meeting.user_id %>
@@ -8,7 +9,7 @@
 						<img class="img-circle img-thumbnail-sad" src="http://cdn.flaticon.com/svg/55/55844.svg">
 					</div>
 					<h2>AÚN NO SE HA APUNTADO NADIE</h2>
-					<div><%= button_to 'Atrás', user_meetings_path(@user), class: "btn btn-lg btn-success", :method => :get %></div>
+					<div><%= button_to 'Atrás', user_meetings_path(@user), class: "btn btn-lg btn-success btn-not-part", :method => :get %></div>
 				</div>
 				<form class="col-md-3"></form>
 			<% else %>
@@ -37,34 +38,31 @@
 							<div class="row">
 							<% for i in 0..@meeting.participants.length-1 %>
 								<div class="col-md-4">
-									<ul>
-										<li>
-											<div>
-												<%= image_tag @meeting.participants[i].image_url.to_s, class: "img-circle img-thumbnail" %>
-											</div>
-											<div>
-												Nombre: <%= @meeting.participants[i].name %>
-											</div>
-											<div>
-												Nick: <%= @meeting.participants[i].nick %>
-											</div>
-											<%= link_to "Ver usuario", user_path(@meeting.participants[i]), class: "btn btn-small btn-success" %>
-										</li>
-									</ul>
+									<li>
+										<div>
+											<%= image_tag @meeting.participants[i].image_url.to_s, class: "img-circle img-thumbnail" %>
+										</div>
+										<div class="text-description">
+											<strong>Nombre:</strong> <%= @meeting.participants[i].name %>.
+										</div>
+										<div class="text-description">
+											<strong>Nick:</strong> <%= @meeting.participants[i].nick %>.
+										</div>
+										<%= link_to "Ver usuario", user_path(@meeting.participants[i]), class: "btn btn-small btn-success btn-user-confirm" %>
+									</li>
 								</div>
 							<% end %>
 							</div>
 							<div class="row">
-								<div class="panel panel-default">
+								<div class="panel panel-default panel-confirm">
 									<div class="panel-heading">
 										<h3 class="panel-title">Ellos son tus participantes, escoge a uno de ellos ;)</h3>
 									</div>
 									<div class="panel-body">
 										<%= collection_select(:meeting, :part_confirm, @meeting.participants, :name, :name, {:prompt => 'Escoge un usuario'}, class: "form-control input-lg") %>
-										<div class="form-group">
+										<div class="form-group form-confirm">
 											<%= f.submit '¡Confirmar!', class: "btn btn-primary btn-lg btn-block" %>
 								    	</div>
-								    	<div><%= link_to 'Back', user_meetings_path(@user) %></div>
 									</div>
 								</div>
 							</div>
@@ -82,11 +80,12 @@
 			    		<h3 class="panel-title"> Reunión </h3>
 			    	</div>
 			    	<div class="panel-body">
-			    		Reunión de <%= @user.languages_without_learning %> organizada por <%= @user.name %> con fecha <%= @meeting.date %> en  <% @places_total.each do |place| %>
+			    		<div class="text-description">Reunión de <%= @user.languages_without_learning %> organizada por <%= @user.name %> con fecha <%= @meeting.date %> en  <% @places_total.each do |place| %>
 								<% if place.id == @meeting.place_id %>
-									<%= place.name %>
+									<%= place.name %>.
 								<% end %>
-							<% end %>.
+							<% end %>
+			    		</div>
 					    <div class="form-group">
 					    	<% f.text_field :participants, :value => current_user %>
 					    </div>
@@ -106,16 +105,13 @@
 						<h3 class="panel-title"> Reuniones organizadas </h3>
 					</div>
 					<div class="panel-body">
-						<ul>
-							<li>Reunión de <%= @user.languages_without_learning %> organizada por <%= @user.name %> y <%= @meeting.part_confirm %> con fecha <%= @meeting.date %> en   <% @places_total.each do |place| %>
-																							<% if place.id == @meeting.place_id %>
-																								<%= place.name %>.
-																							<% end %>
-																						<% end %>
-							</li>
-							<div><%= image_tag @meeting.image_url.to_s, :class => "image-container" %></div>
-						</ul>
-						<div><%= link_to 'Welcome page', root_path %></div>
+						<div class="text-description">Reunión de <%= @user.languages_without_learning %> organizada por <%= @user.name %> y <%= @meeting.part_confirm %> con fecha <%= @meeting.date %> en <% @places_total.each do |place| %>
+									<% if place.id == @meeting.place_id %>
+										<%= place.name %>.
+									<% end %>
+								<% end %>
+						</div>
+						<div><%= image_tag @meeting.image_meeting_url.to_s, :class => "image-meeting-done" %></div>
 					</div>
 				</div>
 			</div>
@@ -129,16 +125,13 @@
 					<h3 class="panel-title"> Reuniones organizadas </h3>
 				</div>
 				<div class="panel-body">
-					<ul>
-						<li>Reunión de <%= @user.languages_without_learning %> organizada por <%= @user.name %> y <%= @meeting.part_confirm %> con fecha <%= @meeting.date %> en   <% @places_total.each do |place| %>
-																						<% if place.id == @meeting.place_id %>
-																							<%= place.name %>.
-																						<% end %>
-																					<% end %>
-						</li>
-						<div><%= image_tag @meeting.image_url.to_s, :class => "image-container" %></div>
-					</ul>
-					<div><%= link_to 'Welcome page', root_path %></div>
+					<div class="text-description">Reunión de <%= @user.languages_without_learning %> organizada por <%= @user.name %> y <%= @meeting.part_confirm %> con fecha <%= @meeting.date %> en   <% @places_total.each do |place| %>
+								<% if place.id == @meeting.place_id %>
+									<%= place.name %>.
+								<% end %>
+							<% end %>
+					</div>
+					<div><%= image_tag @meeting.image_meeting_url.to_s, :class => "image-meeting-done" %></div>
 				</div>
 			</div>
 		</div>

@@ -1,8 +1,8 @@
 class Place < ActiveRecord::Base
 	has_many :meetings
 	has_many :opinions
-	attr_accessor :image, :image_offer
-	mount_uploader :image, ImageUploader
+	attr_accessor :image_place, :image_offer
+	mount_uploader :image_place, ImagePlaceUploader
 	mount_uploader :image_offer, ImageOfferUploader
 	has_secure_password
 

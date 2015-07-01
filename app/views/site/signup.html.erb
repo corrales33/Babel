@@ -2,10 +2,32 @@
 <div class="container">
 	<div class="row style_features">
 		<div class="col-sm-6">
-			<%= button_to 'Regístrate como establecimiento', new_place_path, class: "btn btn-lg btn-success", :method => :get %>
+			<div class="panel panel-default">
+		    	<div class="panel-heading">
+		    		<h3 class="panel-title"> ¿ERES UN ESTABLECIMIENTO? </h3>
+		    	</div>
+		    	<div class="panel-body">
+		    		<img src="/place_signup.jpg" class="img-circle image-signup">
+		    		<p class="text-signup"> Si te interesa participar en nuestra plataforma, regístrate y al instante podrás acceder a cientos de funcionalidades como publicar ofertas llamativas, preparar tu propio perfil u ofrecer un trato más cercano a los clientes contestando sus opiniones.<strong>¡No pierdas más tiempo, regístrate!</strong></p>
+		    	</div>
+			    <div>
+					<%= button_to 'Regístrate como establecimiento', new_place_path, class: "btn btn-lg btn-success btn-signup", :method => :get %>
+			    </div>
+		    </div>
 		</div>
 		<div class="col-sm-6">
-			<%= button_to 'Regístrate como usuario', new_user_path, class: "btn btn-lg btn-success", :method => :get %>
+			<div class="panel panel-default">
+		    	<div class="panel-heading">
+		    		<h3 class="panel-title"> ¿ERES UN USUARIO? </h3>
+		    	</div>
+		    	<div class="panel-body">
+		    		<img src="/user_signup.png" class="img-circle image-signup img-user-signup">
+		    		<p class="text-signup"> ¿Cansado de gastar millonadas en academias para practicar tu idioma preferido? Regístrate y podrás quedar con gente como tú con la que poder organizar reuniones en nuestros establecimientos y aprovecharte de las ofertas especiales que tienen para vosotros. <strong>¡No lo dudes más, regístrate!</strong></p>
+		    	</div>
+			    <div>
+					<%= button_to 'Regístrate como usuario', new_user_path, class: "btn btn-lg btn-success btn-signup", :method => :get %>
+			    </div>
+		    </div>
 		</div>
 	</div>
 </div>

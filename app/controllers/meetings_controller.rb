@@ -13,6 +13,8 @@ class MeetingsController < ApplicationController
 			@users_total = User.all
 			@place = Place.find params[:place_id]
 			@meetings_in_my_place = @place.meetings
+			@next_meetings_own_place = @meetings_in_my_place.next_meetings(15)
+			@meetings_own_place_done = @meetings_in_my_place.last_meetings_done(15)
 		end	
 	end
 
@@ -81,23 +83,31 @@ class MeetingsController < ApplicationController
 	def update_parameter
 		@meeting = Meeting.find params[:id]
 		@meeting.part_confirm = params[:meeting][:part_confirm]
-		@meeting.save
-		flash[:alert] = 'Confirmado'
-		redirect_to root_path
+		if @meeting.save && @meeting.part_confirm != ""
+			flash[:alert] = 'Confirmado'
+			redirect_to root_path
+		else
+			flash[:alert] = "Debes escoger a uno de tus participantes"
+			redirect_to user_meeting_path(current_user, @meeting)
+		end
 	end
 
 	def add_photo
 		@user = User.find params[:user_id]
 		@meeting = Meeting.find params[:id]
-		#@meeting.part_confirm = params[:meeting][:part_confirm]
-		@meeting.save
-		flash[:alert] = 'File save'
-		redirect_to user_meetings_path(@user)
+		if @meeting.update meeting_params
+			binding.pry
+			flash[:alert] = 'File save'
+			redirect_to user_meetings_path(@user)
+		else
+			flash[:alert] = 'File not saved'
+			redirect_to edit_user_meeting_path(current_user, @meeting)
+		end
 	end
 
 	private
 	def meeting_params
-		params.require(:meeting).permit(:city, :place_meeting, :place_id, :language, :date, :participants, :part_confirm, :image, :photo)
+		params.require(:meeting).permit(:city, :place_meeting, :place_id, :language, :date, :participants, :part_confirm, :image_meeting )
 	end
 
 end

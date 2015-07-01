@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 			redirect_to login_user_path
 		elsif
 			flash[:alert] = "User has not been created"
-			redirect_to '/signup'
+			redirect_to '/users/new'
 		end
 	end
 

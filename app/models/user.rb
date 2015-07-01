@@ -2,8 +2,9 @@ class User < ActiveRecord::Base
 	has_many :meetings
 	has_many :ratings
 	has_many :opinions
-	validates :name, uniqueness: true
 	validates :name, presence: true
+	validates :nick, uniqueness: true
+	validates :email, uniqueness: true
 	attr_accessor :image
 	mount_uploader :image, ImageUploader
 	has_secure_password

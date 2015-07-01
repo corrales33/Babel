@@ -87,6 +87,14 @@
     line-height: 1;
 }
 
+.glyphicon-edit {
+    font-size: 42px;
+}
+
+.move-glyphicon {
+    margin-left: 9px;
+}
+
 .opinions-users {
 	margin-top: 40px;
 }

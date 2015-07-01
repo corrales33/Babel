@@ -5,6 +5,13 @@ body {
     color: #333;
 }
 
+.image-nav {
+    width: 80px;
+    height: 40px;
+    margin-left: 35px;
+    margin-top: 5px;
+}
+
 .navbar-fixed-bottom, .navbar-fixed-top {
     position: fixed;
     right: 0px;
@@ -13,13 +20,13 @@ body {
 }
 
 .navbar-fixed-top {
-	top: 0px;
-	border-radius: 0px;
-	border-width: 0px 0px 1px;
+    top: 0px;
+    border-radius: 0px;
+    border-width: 0px 0px 1px;
 }
 
 .navbar-inverse {
-	background-color: #080808;
+    background-color: #080808;
 }
 
 .navbar {
@@ -32,9 +39,9 @@ body {
 .container {
     width: 1170px;
     padding-right: 15px;
-	padding-left: 15px;
-	margin-right: auto;
-	margin-left: auto;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .container > .navbar-header {
@@ -72,7 +79,7 @@ ul, li {
 
 .page-header {
     padding-bottom: 9px;
-    margin: 40px 0px 20px;
+    margin: 20px 0px 20px;
     border-bottom: 1px solid #EEE;
 }
 
@@ -125,6 +132,7 @@ h1 {
     margin-bottom: 0px;
     font-size: 16px;
     color: inherit;
+    text-align: center;
 }
 
 .panel-body {
@@ -140,6 +148,10 @@ h3 {
 
 .text-description {
 	text-align: center;
+}
+
+.text-meetings {
+    text-align: justify;
 }
 
 .image-welcome-user {
@@ -179,7 +191,7 @@ h3 {
 	float: left;
 	position: relative;
 	min-height: 1px;
-	padding-right: 15px;
+	padding-right: 0px;
 }
 
 .name-place {
@@ -230,4 +242,58 @@ button {
     border-color: #3E8F3E;
     color: #FFF;
     background-color: #5CB85C;
+}
+
+.btn-signup {
+    margin-left: 140px;
+}
+
+.btn-assist {
+    margin-left: 105px;
+    margin-bottom: 5px;
+}
+
+.btn-photo {
+    margin-left: 105px;
+    margin-bottom: 5px;
+}
+
+.image-signup {
+    width: 450px;
+    height: 300px;
+}
+
+.img-user-signup {
+    margin-left: 75px;
+}
+
+.text-signup {
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.col-md-6 {
+    margin-top: 10px;
+}
+
+.label-margin {
+    margin-bottom: 5px;
+}
+
+.btn-destroy-meeting {
+    margin-bottom: 5px;
+}
+
+.alert-msg-fail {
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.25) inset, 0px 1px 2px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #A94442;
+    background-color: #F2DEDE;
+    border-color: #EBCCD1;
+    background-image: linear-gradient(to bottom, #F2DEDE 0px, #E7C3C3 100%);
+    background-repeat: repeat-x;
+    border-color: #DCA7A7;
 }

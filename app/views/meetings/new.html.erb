@@ -6,7 +6,7 @@
 			<% @places_total.each do |place| %>	
 				<div class="col-md-3">
 					<ul>
-						<div><%= link_to (image_tag place.image_url.to_s, class: 'image-meeting-place'), place_path(place) %></div>
+						<div><%= link_to (image_tag place.image_place_url.to_s, class: 'image-meeting-place'), place_path(place) %></div>
 						<li class="text-description"><%= place.name %></li>
 					</ul>
 				</div>			

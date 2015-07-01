@@ -1,16 +1,16 @@
 class Meeting < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :place
-	attr_accessor :image
-	mount_uploader :image, ImageUploader
+	attr_accessor :image_meeting
+	mount_uploader :image_meeting, ImageMeetingUploader
 	serialize :participants, Array
 
 	def self.last_meetings_done param
-		meetings = Meeting.where('date < ?', Time.now).limit(param)
+		meetings = Meeting.where('date < ?', Time.now+2.hours).limit(param)
 	end
 
 	def self.next_meetings param
-		meetings = Meeting.where('date > ?', Time.now).limit(param)
+		meetings = Meeting.where('date > ?', Time.now+2.hours).limit(param)
 		next_meetings = meetings.order('date ASC')
 	end
 

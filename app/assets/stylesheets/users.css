@@ -105,6 +105,27 @@ div.skill {
 .avg {
     font-size: 50px;
     padding-top: 20px;
-    margin-left: 50px;
+    margin-left: 60px;
     color: #5CB85C;
+}
+
+.text-name-profile {
+    text-align: center;
+    text-decoration: underline;;
+}
+
+.btn-edit-user {
+    margin-left: 50px;
+}
+
+.btn-new-meeting {
+    margin-left: 30px;
+}
+
+.btn-own-meeting {
+    margin-left: 40px;
+}
+
+.btn-opinion {
+    margin-left: 230px;
 }
