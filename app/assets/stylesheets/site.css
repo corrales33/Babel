@@ -258,6 +258,11 @@ button {
     margin-bottom: 5px;
 }
 
+.btn-photo-meeting {
+    margin-left: 200px;
+    margin-bottom: 5px;
+}
+
 .image-signup {
     width: 450px;
     height: 300px;

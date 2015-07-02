@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
 	has_many :meetings
 	has_many :ratings
 	has_many :opinions
-	validates :name, presence: true
-	validates :nick, presence: true
-	validates :nick, uniqueness: true
-	validates :email, uniqueness: true
+	validates :name, presence: {message: 'El campo nombre debe completarse'}
+	validates :nick, presence: {message: 'El campo nick debe completarse'}
+	validates :nick, uniqueness: {message: 'Este nick ya existe en la base de datos'}
+	validates :email, uniqueness: {message: 'Este email ya está registrado en la base de datos'}
 	attr_accessor :image
 	mount_uploader :image, ImageUploader
 	has_secure_password

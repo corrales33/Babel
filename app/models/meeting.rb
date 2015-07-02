@@ -15,7 +15,7 @@ class Meeting < ActiveRecord::Base
 	end
 
 	def self.save_participants
-		meetings = Meeting.where.not(part_confirm: nil).where('date > ?', Time.now)
+		meetings = Meeting.where.not(part_confirm: nil).where('date > ?', Time.now+2.hours)
 		meetings_confirm = meetings.order('date ASC')
 	end
 

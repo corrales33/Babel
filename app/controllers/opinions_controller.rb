@@ -15,11 +15,8 @@ class OpinionsController < ApplicationController
 		@place = Place.find params[:place_id]
 		@opinion = @place.opinions.new opinion_params
 		if @opinion.save
-			flash[:alert] = "Opinion created successfully"
+			flash[:alert] = "Tu opinión ha sido registrada. ¡Gracias!"
 			redirect_to place_opinions_path(@place)
-		elsif	
-			flash[:alert] = "Opinion has not been created"
-			redirect_to new_place_opinion_path(@place)
 		end
 	end
 

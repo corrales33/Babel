@@ -1,4 +1,14 @@
-<%= flash_message %>
+<% if flash_message %>
+    <div class="container">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="alert-msg-good">
+                <%= flash_message %>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+<% end %>
 <% if current_user %>
 	<div class="container">
 	    <div class="page-header">
@@ -76,7 +86,7 @@
 						<div class="row">
 							<% @places_total.each do |place| %>
 							<% if place.id == meeting.place_id %>
-								<% if meeting.part_confirm && (meeting.image_meeting == nil) %>
+								<% if meeting.part_confirm && (meeting.image_meeting != nil) %>
 									<li class="border-meeting"> Reunión de <%= @user.languages_without_learning %> con <%= meeting.part_confirm %> y con fecha <%= meeting.date %> en <%= place.name %>
 										<div class="row">
 											<div class="col-sm-6">
@@ -87,7 +97,7 @@
 										</div>
 										<div><%= image_tag meeting.image_meeting_url.to_s, :class => "image-meeting-index" %></div>
 									</li>
-								<% elsif meeting.part_confirm && (meeting.image_meeting != nil) %>
+								<% elsif meeting.part_confirm && (meeting.image_meeting == nil) %>
 									<li class="border-meeting"> Reunión de <%= @user.languages_without_learning %> con <%= meeting.part_confirm %> y con fecha <%= meeting.date %> en <%= place.name %>
 										<div class="row">
 											<div class="col-sm-3"></div>
@@ -157,6 +167,7 @@
 										<% if place.id == meeting.place_id %>
 											<% if meeting.part_confirm %>
 												<li class="border-meeting">Reunión de <%= user.languages_without_learning %> organizada por <%= user.name %> y <%= meeting.part_confirm %> con fecha <%= meeting.date %>.
+												<%= button_to "Ver fotografía", user_meeting_path(user, meeting), class: "btn-profile btn-lg btn-info btn-photo-meeting", :method => :get  %>
 												</li>
 											<% end %>
 										<% end %>

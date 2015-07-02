@@ -1,3 +1,14 @@
+<% if flash_message %>
+    <div class="container">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="alert-msg-good">
+                <%= flash_message %>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+<% end %>
 <div class="pb-page-header">
     <div class="container">
         <div class="page-header">
@@ -175,7 +186,7 @@
 	<div class="row style_features">
 		<div class="col-sm-12">
 			<div class="row">
-			<% @places_total.each do |place| %>	
+			<% @places_with_offer.each do |place| %>
 				<div class="col-md-6">
 					<div><%= image_tag place.image_offer_url.to_s, class: 'image-welcome-offer' %></div>
 					<li class="text-description"><%= place.name %></li>

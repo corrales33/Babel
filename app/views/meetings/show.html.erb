@@ -71,7 +71,7 @@
 				</div>
 				<div class="col-md-2"></div>
 			<% end %>
-		<% elsif (current_user.id != @meeting.user_id) && @meeting.participants.empty? %>
+		<% elsif (current_user.id != @meeting.user_id) %>
 			<form class="col-md-2"></form>
 			<div class="col-md-8">
 			<%= form_for [current_user, @meeting], :html => { :multipart => true, :method => "post" } do |f| %>

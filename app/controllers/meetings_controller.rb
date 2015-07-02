@@ -25,7 +25,7 @@ class MeetingsController < ApplicationController
 		if user_exist.blank?
 			@meeting.participants.push(current_user)
 			@meeting.save	
-			flash[:alert] = 'Apuntado succesfully'
+			flash[:alert] = 'Apuntado con éxito'
 			redirect_to root_path
 		else
 			flash[:alert] = 'Ya estás apuntado a la oferta'
@@ -48,11 +48,11 @@ class MeetingsController < ApplicationController
 	def create
 		@user = User.find params[:user_id]
 		@meeting = @user.meetings.new meeting_params
-		if @meeting.save
-			flash[:alert] = "Meeting created successfully"
+		if @meeting.save && (@meeting.place_id != nil)
+			flash[:alert] = "La reunión ha sido creada con éxito :)"
 			redirect_to root_path
-		elsif	
-			flash[:alert] = "Meeting has not been created"
+		else	
+			flash[:alert] = "Debes elegir un establecimiento para organizar tu reunión"
 			redirect_to new_user_meeting_path(@user)
 		end
 	end
@@ -96,12 +96,8 @@ class MeetingsController < ApplicationController
 		@user = User.find params[:user_id]
 		@meeting = Meeting.find params[:id]
 		if @meeting.update meeting_params
-			binding.pry
-			flash[:alert] = 'File save'
+			flash[:alert] = 'Foto añadida'
 			redirect_to user_meetings_path(@user)
-		else
-			flash[:alert] = 'File not saved'
-			redirect_to edit_user_meeting_path(current_user, @meeting)
 		end
 	end
 
