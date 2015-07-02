@@ -11,6 +11,11 @@
 	<form class="col-md-4"></form>
 	<div class="col-md-4">
 	<%= form_for [@user, @rating], :html => { :multipart => true, :method => "post" } do |f| %>
+		<% if @rating.errors.any? %>
+			<% @rating.errors.full_messages.each do |error_msg| %>
+				<li class="alert-msg-fail"><%= error_msg %></li>
+			<% end %>
+		<% end %>
 		<div>
 			<%= image_tag @user.image_url.to_s, class: "img-circle img-thumbnail" %>
 			<h2 class="text-description"> <%= @user.name %> </h2>

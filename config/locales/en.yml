@@ -21,3 +21,87 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    attributes:
+      user:
+        name: "El nombre"
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "es un campo obligatorio"
+
+en:
+  activerecord:
+    attributes:
+      user:
+        nick: "El nick"
+    errors:
+      models:
+        user:
+          attributes:
+            nick:
+              blank: "es un campo obligatorio"
+
+en:
+  activerecord:
+    attributes:
+      user:
+        nick: "Este nick"
+    errors:
+      models:
+        user:
+          attributes:
+            nick:
+              taken: "ya está registrado en la aplicación"
+
+en:
+  activerecord:
+    attributes:
+      user:
+        email: "Este email"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "ya está registrado en la aplicación"
+
+en:
+  activerecord:
+    attributes:
+      rating:
+        score: "La puntuación"
+    errors:
+      models:
+        rating:
+          attributes:
+            score:
+              not_a_number: "debe ser un valor numérico"
+
+en:
+  activerecord:
+    attributes:
+      place:
+        name: "El nombre"
+    errors:
+      models:
+        place:
+          attributes:
+            name:
+              blank: "es un campo obligatorio"
+
+en:
+  activerecord:
+    attributes:
+      place:
+        name: "Este establecimiento"
+    errors:
+      models:
+        place:
+          attributes:
+            name:
+              taken: "ya está registrado en la aplicación"

@@ -11,13 +11,6 @@
 	<form class="col-md-4"></form>
 	<div class="col-md-4">
 	<%= form_for @place, :html => { :multipart => true } do |f| %>
-		<% if @place.errors.any? %>
-		<ul>
-			<% @place.errors.full_messages.each do |error_msg| %>
-			<li><%= error_msg %></li>
-			<% end %>
-		</ul>
-		<% end %>
 	    <div class="form-group">
 	    	<%= f.text_area :offers, class: "form-control input-lg", :placeholder => 'Nueva oferta' %>
 	    </div>

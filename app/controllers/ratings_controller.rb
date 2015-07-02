@@ -10,11 +10,10 @@ class RatingsController < ApplicationController
 		if @rating.save
 			@user.participants_in_rating.push(current_user.id)
 			@user.save
-			flash[:alert] = "Rating created successfully"
+			flash[:alert] = "Tu puntuación ha sido guardada correctamente"
 			redirect_to user_path(@user)
 		else	
-			flash[:alert] = "Rating has not been created"
-			redirect_to user_path(@user)
+			render 'new'
 		end 	
 	end
 =begin

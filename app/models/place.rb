@@ -1,6 +1,8 @@
 class Place < ActiveRecord::Base
 	has_many :meetings
 	has_many :opinions
+	validates :name, presence: true
+	validates :name, uniqueness: true
 	attr_accessor :image_place, :image_offer
 	mount_uploader :image_place, ImagePlaceUploader
 	mount_uploader :image_offer, ImageOfferUploader

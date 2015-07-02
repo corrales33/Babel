@@ -13,11 +13,10 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new users_params
 		if @user.save
-			flash[:alert] = "User created successfully"
+			flash[:alert] = "¡Bienvenid@! Ya formas parte de la comunidad"
 			redirect_to login_user_path
-		elsif
-			flash[:alert] = "User has not been created"
-			redirect_to '/users/new'
+		else
+			render 'new'
 		end
 	end
 
@@ -28,11 +27,10 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find params[:id]
 		if @user.update users_params
-			flash[:alert] = "User updated successfully"
+			flash[:alert] = "Tus datos han sido actualizados correctamente"
 			redirect_to @user
 		else
-			flash[:alert] = "User has not been updated"
-			redirect_to user_path(@user)
+			render 'edit'
 		end
 	end
 

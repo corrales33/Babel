@@ -11,6 +11,11 @@
 	<form class="col-md-3"></form>
 	<div class="col-md-6">
 	<%= form_for @user, :html => { :multipart => true } do |f| %>
+		<% if @user.errors.any? %>
+			<% @user.errors.full_messages.each do |error_msg| %>
+				<li class="alert-msg-fail"><%= error_msg %></li>
+			<% end %>
+		<% end %>
 	    <div class="form-group">
 	    	<div><strong> Nombre:</strong></div>
 	    	<%= f.text_field :name, class: "form-control input-lg" %>

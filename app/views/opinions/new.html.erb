@@ -11,13 +11,6 @@
 	<form class="col-md-4"></form>
 	<div class="col-md-4">
 	<%= form_for [@place, @opinion], :html => { :multipart => true } do |f| %>
-		<% if @opinion.errors.any? %>
-		<ul>
-			<% @opinion.errors.full_messages.each do |error_msg| %>
-			<li><%= error_msg %></li>
-			<% end %>
-		</ul>
-		<% end %>
 	    <div class="form-group">
 	    	<%= f.text_area :comment, class: "form-control input-lg", :placeholder => 'Tu opinión...' %>
 	    </div>
@@ -31,4 +24,3 @@
 	<% end %>
 	<form class="col-md-4"></form>
 </div>
-<div><%= link_to 'Back', place_path(@place) %></div>

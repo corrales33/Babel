@@ -1,7 +1,7 @@
 class SiteController < ApplicationController
 
 	def welcome
-		@users = User.last_users_registered(5)
+		@users = User.last_users_registered(6)
 		@places = Place.last_places_registered(5)
 		@meetings_done = Meeting.last_meetings_done(10)
 		@next_meetings = Meeting.next_meetings(15)

@@ -1,13 +1,4 @@
 <div class="container">
-	<form class="col-md-4"></form>
-	<div class="col-md-4">
-		<% flash.each do |name, msg| %>
-		    <%= content_tag :div, msg, class: "alert-msg-fail" %>
-		<% end %>
-	</div>
-	<form class="col-md-4"></form>
-</div>
-<div class="container">
     <div class="page-header">
         <div class="col-md-12">
             <h1>
@@ -21,11 +12,9 @@
 	<div class="col-md-4">
 	<%= form_for @user, :html => { :multipart => true } do |f| %>
 		<% if @user.errors.any? %>
-		<ul>
 			<% @user.errors.full_messages.each do |error_msg| %>
-			<li><%= error_msg %></li>
+				<li class="alert-msg-fail"><%= error_msg %></li>
 			<% end %>
-		</ul>
 		<% end %>
 	    <div class="form-group">
 	    	<%= f.text_field :name, class: "form-control input-lg", :placeholder => 'Nombre' %>

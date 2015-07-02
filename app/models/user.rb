@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_many :ratings
 	has_many :opinions
 	validates :name, presence: true
+	validates :nick, presence: true
 	validates :nick, uniqueness: true
 	validates :email, uniqueness: true
 	attr_accessor :image

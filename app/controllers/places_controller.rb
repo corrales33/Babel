@@ -11,11 +11,10 @@ class PlacesController < ApplicationController
 	def create
 		@place = Place.new places_params
 		if @place.save
-			flash[:alert] = "Place created successfully"
+			flash[:alert] = "¡Bienvenid@! Ya formas parte de la comunidad"
 			redirect_to login_place_path
-		elsif
-			flash[:alert] = "Place has not been created"
-			redirect_to '/signup'
+		else
+			redirect_to 'new'
 		end
 	end
 
@@ -26,11 +25,10 @@ class PlacesController < ApplicationController
 	def update
 		@place = Place.find params[:id]
 		if @place.update places_params
-			flash[:alert] = "Place updated successfully"
+			flash[:alert] = "Tus datos han sido actualizados correctamente"
 			redirect_to @place
 		else
-			flash[:alert] = "Place has not been updated"
-			redirect_to place_path(@place)
+			render 'edit'
 		end
 	end
 
